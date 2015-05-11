@@ -76,7 +76,7 @@ struct rcc {
 /*
  * APB2 peripheral clock enable register bits
  */
-/* IO port A clock enable */
+/* Alternate function IO clock enable */
 #define RCC_APB2ENR_AFIOEN_LSB  0
 #define RCC_APB2ENR_AFIOEN_MASK (1 << RCC_APB2ENR_AFIOEN_LSB)
 /* IO port A clock enable */
