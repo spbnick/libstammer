@@ -35,7 +35,7 @@ reset(void)
     /* Switch SYSCLK to PLL input */
     rcc->cfgr = (rcc->cfgr & (~RCC_CFGR_SW_MASK)) | (2 << RCC_CFGR_SW_LSB);
     /* Wait for SYSCLK to switch to PLL input */
-    while (((rcc->cr & RCC_CFGR_SWS_MASK) >> RCC_CFGR_SWS_LSB) != 2);
+    while (((rcc->cfgr & RCC_CFGR_SWS_MASK) >> RCC_CFGR_SWS_LSB) != 2);
     /* Enable microcontroller clock output of PLL/2 (36MHz) */
     rcc->cfgr = (rcc->cfgr & (~RCC_CFGR_MCO_MASK)) | (7 << RCC_CFGR_MCO_LSB);
 
