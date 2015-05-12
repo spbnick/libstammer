@@ -1,5 +1,6 @@
 #include "rcc.h"
 #include "gpio.h"
+#include "flash.h"
 
 #define STOP \
     do {                \
@@ -9,17 +10,30 @@
 void
 reset(void)
 {
-    struct gpio *gpio_a = (struct gpio *)0x40010800;
-    struct gpio *gpio_c = (struct gpio *)0x40011000;
-    struct rcc *rcc     = (struct rcc *)0x40021000;
+    volatile struct gpio *gpio_a = (struct gpio *)0x40010800;
+    volatile struct gpio *gpio_c = (struct gpio *)0x40011000;
+    volatile struct rcc *rcc     = (struct rcc *)0x40021000;
+    volatile struct flash *flash = (struct flash *)0x40022000;
 
     /*
-     * Set up the clocks
+     * Enable the HSE
      */
     /* Enable HSE clock */
     rcc->cr |= RCC_CR_HSEON_MASK;
     /* Wait for external high-speed (HSE) clock (8MHz) to be ready */
     while (!(rcc->cr & RCC_CR_HSERDY_MASK));
+
+    /*
+     * Set flash latency to 2 wait states as required for
+     * 48MHz < SYSCLK <= 72MHz. Otherwise the CPU wouldn't be able to read
+     * the program after switching to 72MHz SYSCLK below.
+     */
+    flash->acr = (flash->acr & (~FLASH_ACR_LATENCY_MASK)) |
+                 (2 << FLASH_ACR_LATENCY_LSB);
+
+    /*
+     * Configure and enable the PLL
+     */
     /* Set PLL pre-divisor to 1, so PLL gets 8MHz from HSE */
     rcc->cfgr &= ~RCC_CFGR_PLLXTPRE_MASK;
     /* Switch PLL input to HSE */
@@ -30,14 +44,14 @@ reset(void)
     rcc->cr |= RCC_CR_PLLON_MASK;
     /* Wait for PLL to lock */
     while (!(rcc->cr & RCC_CR_PLLRDY_MASK));
+
     /* Set APB1 prescaler divisor to 2, to get the maximum 36MHz clock */
     rcc->cfgr = (rcc->cfgr & (~RCC_CFGR_PPRE1_MASK)) | (4 << RCC_CFGR_PPRE1_LSB);
+
     /* Switch SYSCLK to PLL input */
     rcc->cfgr = (rcc->cfgr & (~RCC_CFGR_SW_MASK)) | (2 << RCC_CFGR_SW_LSB);
     /* Wait for SYSCLK to switch to PLL input */
     while (((rcc->cfgr & RCC_CFGR_SWS_MASK) >> RCC_CFGR_SWS_LSB) != 2);
-    /* Enable microcontroller clock output of PLL/2 (36MHz) */
-    rcc->cfgr = (rcc->cfgr & (~RCC_CFGR_MCO_MASK)) | (7 << RCC_CFGR_MCO_LSB);
 
     /*
      * Enable I/O ports
@@ -48,11 +62,13 @@ reset(void)
     rcc->apb2enr |= RCC_APB2ENR_IOPCEN_MASK;
 
     /*
-     * Enable clock output
+     * Enable clock output on PA8
      */
     gpio_a->crh = (gpio_a->crh & (~GPIO_CRH_MODE8_MASK) & (~GPIO_CRH_CNF8_MASK)) |
                   (GPIO_MODE_OUTPUT_50MHZ << GPIO_CRH_MODE8_LSB) |
                   (GPIO_CNF_OUTPUT_AF_PUSH_PULL << GPIO_CRH_CNF8_LSB);
+    /* Enable microcontroller clock output of PLL/2 (36MHz) */
+    rcc->cfgr = (rcc->cfgr & (~RCC_CFGR_MCO_MASK)) | (7 << RCC_CFGR_MCO_LSB);
 
     /*
      * Enable LED output
@@ -65,8 +81,8 @@ reset(void)
     /*
      * Light the LED
      */
-    /* Set PC13 output high, connecting the LED to ground */
-    gpio_c->bsrr = GPIO_BSRR_BS13_MASK;
+    /* Set PC13 output low, connecting the LED to ground */
+    gpio_c->bsrr &= ~GPIO_BSRR_BS13_MASK;
 
     STOP;
 }
