@@ -8,6 +8,12 @@
     } while (1)
 
 void
+default_handler(void)
+{
+    STOP;
+}
+
+void
 reset(void)
 {
     volatile struct gpio *gpio_a = (struct gpio *)0x40010800;
@@ -84,17 +90,5 @@ reset(void)
     /* Set PC13 output low, connecting the LED to ground */
     gpio_c->bsrr &= ~GPIO_BSRR_BS13_MASK;
 
-    STOP;
-}
-
-void
-nmi(void)
-{
-    STOP;
-}
-
-void
-hard_fault(void)
-{
     STOP;
 }
