@@ -12,9 +12,12 @@
 .word default_handler   /* BusFault */
 .word default_handler   /* UsageFault */
 .word default_handler   /* Reserved1 */
+.word default_handler   /* Reserved2 */
+.word default_handler   /* Reserved3 */
+.word default_handler   /* Reserved4 */
 .word default_handler   /* SVCall */
 .word default_handler   /* Debug Monitor */
-.word default_handler   /* Reserved2 */
+.word default_handler   /* Reserved5 */
 .word default_handler   /* PendSV */
 .word default_handler   /* SysTick */
 .word default_handler   /* WWDG */
