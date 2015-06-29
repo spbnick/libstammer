@@ -19,6 +19,9 @@ struct rcc {
     unsigned int csr;       /* Control/status register */
 };
 
+/* The RCC instance */
+#define RCC ((volatile struct rcc *)0x40021000)
+
 /*
  * Clock control register bits
  */
