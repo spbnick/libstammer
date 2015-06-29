@@ -19,7 +19,7 @@
 .word default_handler   /* Debug Monitor */
 .word default_handler   /* Reserved5 */
 .word default_handler   /* PendSV */
-.word default_handler   /* SysTick */
+.word systick_handler   /* SysTick */
 .word default_handler   /* WWDG */
 .word default_handler   /* PVD */
 .word default_handler   /* TAMPER */

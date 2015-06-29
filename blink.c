@@ -1,6 +1,7 @@
 #include "rcc.h"
 #include "gpio.h"
 #include "flash.h"
+#include "stk.h"
 
 #define STOP \
     do {                \
@@ -11,6 +12,14 @@ void
 default_handler(void)
 {
     STOP;
+}
+
+void systick_handler(void) __attribute__ ((isr));
+void
+systick_handler(void)
+{
+    /* Toggle the LED */
+    GPIO_C->odr ^= GPIO_ODR_ODR13_MASK;
 }
 
 void
@@ -80,10 +89,10 @@ reset(void)
                   (GPIO_CNF_OUTPUT_GP_OPEN_DRAIN << GPIO_CRH_CNF13_LSB);
 
     /*
-     * Light the LED
+     * Set SysTick timer to fire the interrupt
      */
-    /* Set PC13 output low, connecting the LED to ground */
-    GPIO_C->bsrr &= ~GPIO_BSRR_BS13_MASK;
+    STK->val = STK->load = 0x1fffff;
+    STK->ctrl |= STK_CTRL_ENABLE_MASK | STK_CTRL_TICKINT_MASK;
 
     STOP;
 }
