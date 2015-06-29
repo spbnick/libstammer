@@ -8,12 +8,12 @@ PROGRAMS = \
 all: $(PROGRAMS:=.bin)
 
 %.o: %.c
-	$(CC)gcc $(TARGET_CFLAGS) -g3 -c -o $@ $<
-	$(CC)gcc $(TARGET_CFLAGS) -MM $< > $*.d
+	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -g3 -c -o $@ $<
+	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -MM $< > $*.d
 
 %.o: %.S
-	$(CC)gcc $(TARGET_CFLAGS) -g3 -D__ASSEMBLY__ -c -o $@ $<
-	$(CC)gcc $(TARGET_CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
+	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -g3 -D__ASSEMBLY__ -c -o $@ $<
+	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 define ELF_RULE
 $(strip $(1))_OBJS = $(1)_vectors.o $$(addsuffix .o, $(1) $$($(strip $(1))_MODULES))
