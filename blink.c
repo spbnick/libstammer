@@ -31,19 +31,8 @@ reset(void)
     /*
      * Enable I/O ports
      */
-    /* Enable APB2 clock to I/O port A */
-    RCC->apb2enr |= RCC_APB2ENR_IOPAEN_MASK;
     /* Enable APB2 clock to I/O port C */
     RCC->apb2enr |= RCC_APB2ENR_IOPCEN_MASK;
-
-    /*
-     * Enable clock output on PA8
-     */
-    GPIO_A->crh = (GPIO_A->crh & (~GPIO_CRH_MODE8_MASK) & (~GPIO_CRH_CNF8_MASK)) |
-                  (GPIO_MODE_OUTPUT_50MHZ << GPIO_CRH_MODE8_LSB) |
-                  (GPIO_CNF_OUTPUT_AF_PUSH_PULL << GPIO_CRH_CNF8_LSB);
-    /* Enable microcontroller clock output of PLL/2 (36MHz) */
-    RCC->cfgr = (RCC->cfgr & (~RCC_CFGR_MCO_MASK)) | (7 << RCC_CFGR_MCO_LSB);
 
     /*
      * Enable LED output
