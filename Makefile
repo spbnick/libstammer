@@ -5,6 +5,8 @@ TARGET_CFLAGS=-mcpu=cortex-m3 -mthumb
 PROGRAMS = \
     blink
 
+COMMON_MODULES = init
+
 all: $(PROGRAMS:=.bin)
 
 %.o: %.c
@@ -16,7 +18,9 @@ all: $(PROGRAMS:=.bin)
 	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 define ELF_RULE
-$(strip $(1))_OBJS = $(1)_vectors.o $$(addsuffix .o, $(1) $$($(strip $(1))_MODULES))
+$(strip $(1))_OBJS = $(1)_vectors.o \
+                     $$(addsuffix .o, $(1) $$($(strip $(1))_MODULES) \
+				                           $$(COMMON_MODULES))
 $(1).elf: $$($(strip $(1))_OBJS) flash.ld memory.ld
 	$(CC)ld -T flash.ld -o $$@ $$($(strip $(1))_OBJS)
 OBJS += $$($(strip $(1))_OBJS)
