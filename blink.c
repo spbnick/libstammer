@@ -54,9 +54,13 @@ reset(void)
                   (GPIO_CNF_OUTPUT_GP_OPEN_DRAIN << GPIO_CRH_CNF13_LSB);
 
     /*
-     * Set SysTick timer to fire the interrupt
+     * Set SysTick timer to fire the interrupt each half-second.
+     * NOTE the ST PM0056 says: "When HCLK is programmed at the maximum
+     * frequency, the SysTick period is 1ms."
      */
-    STK->val = STK->load = 0x1fffff;
+    STK->val = STK->load =
+        (((STK->calib & STK_CALIB_TENMS_MASK) >> STK_CALIB_TENMS_LSB) + 1) *
+        500 - 1;
     STK->ctrl |= STK_CTRL_ENABLE_MASK | STK_CTRL_TICKINT_MASK;
 
     STOP;
