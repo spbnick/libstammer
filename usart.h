@@ -113,7 +113,7 @@ struct usart {
 #define USART_CR1_M_MASK        (1 << USART_CR1_M_LSB)
 /* USART enable */
 #define USART_CR1_UE_LSB        13
-#define USART_CR1_UE_UEASK      (1 << USART_CR1_UE_LSB)
+#define USART_CR1_UE_MASK       (1 << USART_CR1_UE_LSB)
 
 /*
  * Control register 2 bits
