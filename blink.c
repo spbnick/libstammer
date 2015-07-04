@@ -8,12 +8,6 @@
         asm ("wfi");    \
     } while (1)
 
-void
-default_handler(void)
-{
-    STOP;
-}
-
 void systick_handler(void) __attribute__ ((isr));
 void
 systick_handler(void)

@@ -80,3 +80,7 @@
 .word default_handler   /* DMA2_Channel2 */
 .word default_handler   /* DMA2_Channel3 */
 .word default_handler   /* DMA2_Channel4_5 */
+
+default_handler:
+    wfi
+    b default_handler
