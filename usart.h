@@ -69,6 +69,21 @@ struct usart {
 #define USART_BRR_DIV_MANTISSA_MSB      15
 #define USART_BRR_DIV_MANTISSA_MASK     (0x3fff << USART_BRR_DIV_MANTISSA_LSB)
 
+/**
+ * Calculate baud rate register value for the specified functional clock and
+ * desired baud rate.
+ *
+ * @param fck   Functional clock frequency, Hz.
+ * @param baud  Baud rate, baud.
+ *
+ * @return Baud rate register value.
+ */
+static unsigned int
+usart_brr_val(unsigned int fck, unsigned int baud)
+{
+    return fck / baud;
+}
+
 /*
  * Control register 1 bits
  */
