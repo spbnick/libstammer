@@ -3,7 +3,8 @@ CC=arm-none-eabi-
 TARGET_CFLAGS=-mcpu=cortex-m3 -mthumb
 
 PROGRAMS = \
-    blink
+    blink       \
+    usart_hello
 
 COMMON_MODULES = init
 
