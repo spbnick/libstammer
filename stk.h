@@ -50,4 +50,18 @@ struct stk {
 #define STK_VAL_CURRENT_MSB     23
 #define STK_VAL_CURRENT_MASK    (0xffffff << STK_VAL_CURRENT_LSB)
 
+/*
+ * Calibration value register bits
+ */
+/* Calibration value */
+#define STK_CALIB_TENMS_LSB     0
+#define STK_CALIB_TENMS_MSB     23
+#define STK_CALIB_TENMS_MASK    (0xffffff << STK_CALIB_TENMS_LSB)
+/* SKEW flag */
+#define STK_CALIB_SKEW_LSB      30
+#define STK_CALIB_SKEW_MASK     (1 << STK_CALIB_SKEW_LSB)
+/* NOREF flag */
+#define STK_CALIB_NOREF_LSB     31
+#define STK_CALIB_NOREF_MASK    (1 << STK_CALIB_NOREF_LSB)
+
 #endif /* _STK_H */
