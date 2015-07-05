@@ -1,5 +1,5 @@
 /*
- * Say hello on USART2
+ * Say hello on USART1
  */
 #include "init.h"
 #include "rcc.h"
@@ -9,7 +9,7 @@
 void
 reset(void)
 {
-    volatile struct usart *usart = USART2;
+    volatile struct usart *usart = USART1;
     const char *message = "Hello, world!\r\n";
     const char *p;
     unsigned int c;
@@ -23,29 +23,29 @@ reset(void)
     /* Enable clock to I/O port A */
     RCC->apb2enr |= RCC_APB2ENR_IOPAEN_MASK;
 
-    /* Configure TX pin (PA2) */
-    GPIO_A->crl =
-        (GPIO_A->crl & (~GPIO_CRL_MODE2_MASK) & (~GPIO_CRL_CNF2_MASK)) |
-        (GPIO_MODE_OUTPUT_50MHZ << GPIO_CRL_MODE2_LSB) |
-        (GPIO_CNF_OUTPUT_AF_PUSH_PULL << GPIO_CRL_CNF2_LSB);
+    /* Configure TX pin (PA9) */
+    GPIO_A->crh =
+        (GPIO_A->crh & (~GPIO_CRH_MODE9_MASK) & (~GPIO_CRH_CNF9_MASK)) |
+        (GPIO_MODE_OUTPUT_50MHZ << GPIO_CRH_MODE9_LSB) |
+        (GPIO_CNF_OUTPUT_AF_PUSH_PULL << GPIO_CRH_CNF9_LSB);
 
-    /* Configure RX pin (PA3) */
-    GPIO_A->crl =
-        (GPIO_A->crl & (~GPIO_CRL_MODE3_MASK) & (~GPIO_CRL_CNF3_MASK)) |
-        (GPIO_MODE_INPUT << GPIO_CRL_MODE3_LSB) |
-        (GPIO_CNF_INPUT_FLOATING << GPIO_CRL_CNF3_LSB);
+    /* Configure RX pin (PA10) */
+    GPIO_A->crh =
+        (GPIO_A->crh & (~GPIO_CRH_MODE10_MASK) & (~GPIO_CRH_CNF10_MASK)) |
+        (GPIO_MODE_INPUT << GPIO_CRH_MODE10_LSB) |
+        (GPIO_CNF_INPUT_FLOATING << GPIO_CRH_CNF10_LSB);
 
     /*
      * Configure USART
      */
     /* Enable clock to USART2 */
-    RCC->apb1enr |= RCC_APB1ENR_USART2EN_MASK;
+    RCC->apb2enr |= RCC_APB2ENR_USART1EN_MASK;
 
     /* Enable USART, leave the default mode of 8N1 */
     usart->cr1 |= USART_CR1_UE_MASK;
 
     /* Set baud rate of 115200 based on PCLK1 at 36MHz */
-    usart->brr = usart_brr_val(36 * 1000 * 1000, 115200);
+    usart->brr = usart_brr_val(72 * 1000 * 1000, 115200);
 
     /* Enable receiver and transmitter */
     usart->cr1 |= USART_CR1_RE_MASK | USART_CR1_TE_MASK;
