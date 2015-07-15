@@ -4,6 +4,7 @@ TARGET_CFLAGS=-mcpu=cortex-m3 -mthumb
 
 PROGRAMS = \
     blink       \
+    pwm_blink   \
     usart_hello
 
 COMMON_MODULES = init
