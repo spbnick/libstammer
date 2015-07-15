@@ -435,22 +435,22 @@ struct tim {
 #define TIM_BDTR_LOCK_VAL_LVL2  0x2
 #define TIM_BDTR_LOCK_VAL_LVL3  0x3
 /* Off-state selection for idle mode */
-#define TIM_BDTR_OSSI_MSB       10
+#define TIM_BDTR_OSSI_LSB       10
 #define TIM_BDTR_OSSI_MASK      (1 << TIM_BDTR_OSSI_LSB)
 /* Off-state selection for run mode */
-#define TIM_BDTR_OSSR_MSB       11
+#define TIM_BDTR_OSSR_LSB       11
 #define TIM_BDTR_OSSR_MASK      (1 << TIM_BDTR_OSSR_LSB)
 /* Break enable */
-#define TIM_BDTR_BKE_MSB        12
+#define TIM_BDTR_BKE_LSB        12
 #define TIM_BDTR_BKE_MASK       (1 << TIM_BDTR_BKE_LSB)
 /* Break polarity */
-#define TIM_BDTR_BKP_MSB        13
+#define TIM_BDTR_BKP_LSB        13
 #define TIM_BDTR_BKP_MASK       (1 << TIM_BDTR_BKP_LSB)
 /* Automatic output enable */
-#define TIM_BDTR_AOE_MSB        14
+#define TIM_BDTR_AOE_LSB        14
 #define TIM_BDTR_AOE_MASK       (1 << TIM_BDTR_AOE_LSB)
 /* Main output enable */
-#define TIM_BDTR_MOE_MSB        15
+#define TIM_BDTR_MOE_LSB        15
 #define TIM_BDTR_MOE_MASK       (1 << TIM_BDTR_MOE_LSB)
 
 /*
