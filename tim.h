@@ -29,6 +29,15 @@ struct tim {
     unsigned int dmar;  /* DMA address register (address for full transfer) */
 };
 
+/* The TIM1 (advanced control timer) instance */
+#define TIM1 ((volatile struct tim *)0x40012c00)
+/* The TIM2 (general purpose timer) instance */
+#define TIM2 ((volatile struct tim *)0x40000000)
+/* The TIM3 (general purpose timer) instance */
+#define TIM3 ((volatile struct tim *)0x40000400)
+/* The TIM4 (general purpose timer) instance */
+#define TIM4 ((volatile struct tim *)0x40000800)
+
 /*
  * Control register 1 bits
  */
