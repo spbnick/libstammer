@@ -45,6 +45,9 @@ struct rcc {
 #define RCC_CFGR_SW_LSB         0
 #define RCC_CFGR_SW_MSB         1
 #define RCC_CFGR_SW_MASK        (0x3 << RCC_CFGR_SW_LSB)
+#define RCC_CFGR_SW_VAL_HSI     0x0 /* HSI selected as system clock */
+#define RCC_CFGR_SW_VAL_HSE     0x1 /* HSE selected as system clock */
+#define RCC_CFGR_SW_VAL_PLL     0x2 /* PLL selected as system clock */
 /* System clock switch status */
 #define RCC_CFGR_SWS_LSB        2
 #define RCC_CFGR_SWS_MSB        3
@@ -53,14 +56,24 @@ struct rcc {
 #define RCC_CFGR_HPRE_LSB       4
 #define RCC_CFGR_HPRE_MSB       7
 #define RCC_CFGR_HPRE_MASK      (0xf << RCC_CFGR_HPRE_LSB)
-/* APB low-speed prescaler (APB1) */
+/* APB low-speed prescaler (APB1, PCLK1) */
 #define RCC_CFGR_PPRE1_LSB      8
 #define RCC_CFGR_PPRE1_MSB      10
 #define RCC_CFGR_PPRE1_MASK     (0x7 << RCC_CFGR_PPRE1_LSB)
-/* APB high-speed prescaler (APB2) */
+#define RCC_CFGR_PPRE1_VAL_DIV1     0x0 /* HCLK / 1 */
+#define RCC_CFGR_PPRE1_VAL_DIV2     0x4 /* HCLK / 2 */
+#define RCC_CFGR_PPRE1_VAL_DIV4     0x5 /* HCLK / 4 */
+#define RCC_CFGR_PPRE1_VAL_DIV8     0x6 /* HCLK / 8 */
+#define RCC_CFGR_PPRE1_VAL_DIV16    0x7 /* HCLK / 16 */
+/* APB high-speed prescaler (APB2, PCLK2) */
 #define RCC_CFGR_PPRE2_LSB      11
 #define RCC_CFGR_PPRE2_MSB      13
 #define RCC_CFGR_PPRE2_MASK     (0x7 << RCC_CFGR_PPRE2_LSB)
+#define RCC_CFGR_PPRE2_VAL_DIV1     0x0 /* HCLK / 1 */
+#define RCC_CFGR_PPRE2_VAL_DIV2     0x4 /* HCLK / 2 */
+#define RCC_CFGR_PPRE2_VAL_DIV4     0x5 /* HCLK / 4 */
+#define RCC_CFGR_PPRE2_VAL_DIV8     0x6 /* HCLK / 8 */
+#define RCC_CFGR_PPRE2_VAL_DIV16    0x7 /* HCLK / 16 */
 /* PLL entry clock source */
 #define RCC_CFGR_PLLSRC_LSB     16
 #define RCC_CFGR_PLLSRC_MASK    (1 << RCC_CFGR_PLLSRC_LSB)
@@ -71,6 +84,21 @@ struct rcc {
 #define RCC_CFGR_PLLMUL_LSB     18
 #define RCC_CFGR_PLLMUL_MSB     21
 #define RCC_CFGR_PLLMUL_MASK    (0xf << RCC_CFGR_PLLMUL_LSB)
+#define RCC_CFGR_PLLMUL_VAL_MUL2    0x0 /* PLL input clock * 2 */
+#define RCC_CFGR_PLLMUL_VAL_MUL3    0x1 /* PLL input clock * 3 */
+#define RCC_CFGR_PLLMUL_VAL_MUL4    0x2 /* PLL input clock * 4 */
+#define RCC_CFGR_PLLMUL_VAL_MUL5    0x3 /* PLL input clock * 5 */
+#define RCC_CFGR_PLLMUL_VAL_MUL6    0x4 /* PLL input clock * 6 */
+#define RCC_CFGR_PLLMUL_VAL_MUL7    0x5 /* PLL input clock * 7 */
+#define RCC_CFGR_PLLMUL_VAL_MUL8    0x6 /* PLL input clock * 8 */
+#define RCC_CFGR_PLLMUL_VAL_MUL9    0x7 /* PLL input clock * 9 */
+#define RCC_CFGR_PLLMUL_VAL_MUL10   0x8 /* PLL input clock * 10 */
+#define RCC_CFGR_PLLMUL_VAL_MUL11   0x9 /* PLL input clock * 11 */
+#define RCC_CFGR_PLLMUL_VAL_MUL12   0xa /* PLL input clock * 12 */
+#define RCC_CFGR_PLLMUL_VAL_MUL13   0xb /* PLL input clock * 13 */
+#define RCC_CFGR_PLLMUL_VAL_MUL14   0xc /* PLL input clock * 14 */
+#define RCC_CFGR_PLLMUL_VAL_MUL15   0xd /* PLL input clock * 15 */
+#define RCC_CFGR_PLLMUL_VAL_MUL16   0xe /* PLL input clock * 16 */
 /* Microcontroller clock output */
 #define RCC_CFGR_MCO_LSB        24
 #define RCC_CFGR_MCO_MSB        26
