@@ -7,11 +7,11 @@ COMMON_MODULES = init
 all: libstammer.a
 
 %.o: %.c
-	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -g3 -c -o $@ $<
+	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -c -o $@ $<
 	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -MM $< > $*.d
 
 %.o: %.S
-	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -g3 -D__ASSEMBLY__ -c -o $@ $<
+	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -c -o $@ $<
 	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 MODULES = init
