@@ -96,7 +96,7 @@ struct tim {
 /* Master mode selection */
 #define TIM_CR2_MMS_LSB     4
 #define TIM_CR2_MMS_MSB     6
-#define TIM_CR2_MMS_MASK    (3 << TIM_CR1_MMS_LSB)
+#define TIM_CR2_MMS_MASK    (0x7 << TIM_CR1_MMS_LSB)
 #define TIM_CR2_MMS_VAL_RESET           0
 #define TIM_CR2_MMS_VAL_ENABLE          1
 #define TIM_CR2_MMS_VAL_UPDATE          2
