@@ -163,31 +163,39 @@ struct gpio {
 #define GPIO_CRH_CNF15_MSB      31
 #define GPIO_CRH_CNF15_MASK     (3 << GPIO_CRH_CNF15_LSB)
 
-/* Input mode */
-#define GPIO_MODE_INPUT         0x0
-/* Output mode, max speed 10 MHz */
-#define GPIO_MODE_OUTPUT_10MHZ  0x1
-/* Output mode, max speed 2 MHz */
-#define GPIO_MODE_OUTPUT_2MHZ   0x2
-/* Output mode, max speed 50 MHz */
-#define GPIO_MODE_OUTPUT_50MHZ  0x3
+/** GPIO pin mode */
+enum gpio_mode {
+    /** Input mode */
+    GPIO_MODE_INPUT         = 0x0,
+    /** Output mode, max speed 10 MHz */
+    GPIO_MODE_OUTPUT_10MHZ  = 0x1,
+    /** Output mode, max speed 2 MHz */
+    GPIO_MODE_OUTPUT_2MHZ   = 0x2,
+    /** Output mode, max speed 50 MHz */
+    GPIO_MODE_OUTPUT_50MHZ  = 0x3
+};
 
-/* Input mode, analog configuration */
-#define GPIO_CNF_INPUT_ANALOG   0x0
-/* Input mode, floating input (reset state) configuration */
-#define GPIO_CNF_INPUT_FLOATING 0x1
-/* Input mode, pull-up / pull-down configuration */
-#define GPIO_CNF_INPUT_PULL     0x2
+/** GPIO pin input configuration */
+enum gpio_cnf_input {
+    /** Input mode, analog configuration */
+    GPIO_CNF_INPUT_ANALOG   = 0x0,
+    /** Input mode, floating input (reset state) configuration */
+    GPIO_CNF_INPUT_FLOATING = 0x1,
+    /** Input mode, pull-up / pull-down configuration */
+    GPIO_CNF_INPUT_PULL     = 0x2,
+};
 
-/* Output mode, general purpose push-pull configuration */
-#define GPIO_CNF_OUTPUT_GP_PUSH_PULL    0x0
-/* Output mode, general purpose open-drain configuration */
-#define GPIO_CNF_OUTPUT_GP_OPEN_DRAIN   0x1
-/* Output mode, alternate function push-pull configuration */
-#define GPIO_CNF_OUTPUT_AF_PUSH_PULL    0x2
-/* Output mode, alternate function open-drain configuration */
-#define GPIO_CNF_OUTPUT_AF_OPEN_DRAIN   0x3
-
+/** GPIO pin output configuration */
+enum gpio_cnf_output {
+    /** Output mode, general purpose push-pull configuration */
+    GPIO_CNF_OUTPUT_GP_PUSH_PULL    = 0x0,
+    /** Output mode, general purpose open-drain configuration */
+    GPIO_CNF_OUTPUT_GP_OPEN_DRAIN   = 0x1,
+    /** Output mode, alternate function push-pull configuration */
+    GPIO_CNF_OUTPUT_AF_PUSH_PULL    = 0x2,
+    /** Output mode, alternate function open-drain configuration */
+    GPIO_CNF_OUTPUT_AF_OPEN_DRAIN   = 0x3,
+};
 
 /*
  * Port input data register bits
