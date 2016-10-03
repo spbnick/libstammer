@@ -505,4 +505,29 @@ enum gpio_cnf_output {
 #define GPIO_LCKR_LCK15_LSB  15
 #define GPIO_LCKR_LCK15_MASK (1 << GPIO_LCKR_LCK15_LSB)
 
+/** Minimum port pin index */
+#define GPIO_PIN_IDX_MIN    0
+/** First port pin index of the high half */
+#define GPIO_PIN_IDX_HIGH   8
+/** Maximum port pin index */
+#define GPIO_PIN_IDX_MAX    15
+/** Number of pins in a port */
+#define GPIO_PIN_IDX_NUM    (GPIO_PIN_IDX_MAX - GPIO_PIN_IDX_MIN + 1)
+/** Invalid port pin index */
+#define GPIO_PIN_IDX_INV    255
+
+/**
+ * Configure a single pin on a port.
+ *
+ * @param gpio  A GPIO port peripheral.
+ * @param pin   Index of the pin to configure.
+ * @param mode  Pin mode to use.
+ * @param conf  Pin configuration to use according to the mode. Either an
+ *              enum gpio_cnf_input or an enum gpio_cnf_output value.
+ */
+extern void gpio_pin_conf(volatile struct gpio *gpio,
+                          unsigned int pin,
+                          enum gpio_mode mode,
+                          unsigned int cnf);
+
 #endif /* _GPIO_H */
