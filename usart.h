@@ -5,22 +5,22 @@
 #ifndef _USART_H
 #define _USART_H
 
-/* USART structure */
+/** USART structure */
 struct usart {
-    unsigned int sr;    /* Status register */
-    unsigned int dr;    /* Data register */
-    unsigned int brr;   /* Baud rate register */
-    unsigned int cr1;   /* Control register 1 */
-    unsigned int cr2;   /* Control register 2 */
-    unsigned int cr3;   /* Control register 3 */
-    unsigned int gtpr;  /* Guard time and prescaler register */
+    unsigned int sr;    /**< Status register */
+    unsigned int dr;    /**< Data register */
+    unsigned int brr;   /**< Baud rate register */
+    unsigned int cr1;   /**< Control register 1 */
+    unsigned int cr2;   /**< Control register 2 */
+    unsigned int cr3;   /**< Control register 3 */
+    unsigned int gtpr;  /**< Guard time and prescaler register */
 };
 
-/* The USART1 instance */
+/** The USART1 instance */
 #define USART1 ((volatile struct usart *)0x40013800)
-/* The USART2 instance */
+/** The USART2 instance */
 #define USART2 ((volatile struct usart *)0x40004400)
-/* The USART3 instance */
+/** The USART3 instance */
 #define USART3 ((volatile struct usart *)0x40004800)
 
 /*

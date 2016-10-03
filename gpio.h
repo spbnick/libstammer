@@ -5,26 +5,26 @@
 #ifndef _GPIO_H
 #define _GPIO_H
 
-/* GPIO */
+/** GPIO */
 struct gpio {
-    unsigned int crl;   /* Configuration register low */
-    unsigned int crh;   /* Configuration register high */
-    unsigned int idr;   /* Input data register */
-    unsigned int odr;   /* Output data register */
-    unsigned int bsrr;  /* Bit set/reset register */
-    unsigned int brr;   /* Bit reset register */
-    unsigned int lckr;  /* Configuration lock register */
+    unsigned int crl;   /**< Configuration register low */
+    unsigned int crh;   /**< Configuration register high */
+    unsigned int idr;   /**< Input data register */
+    unsigned int odr;   /**< Output data register */
+    unsigned int bsrr;  /**< Bit set/reset register */
+    unsigned int brr;   /**< Bit reset register */
+    unsigned int lckr;  /**< Configuration lock register */
 };
 
-/* GPIO port A */
+/** GPIO port A */
 #define GPIO_A  ((volatile struct gpio *)0x40010800)
-/* GPIO port B */
+/** GPIO port B */
 #define GPIO_B  ((volatile struct gpio *)0x40010c00)
-/* GPIO port C */
+/** GPIO port C */
 #define GPIO_C  ((volatile struct gpio *)0x40011000)
-/* GPIO port D */
+/** GPIO port D */
 #define GPIO_D  ((volatile struct gpio *)0x40014000)
-/* GPIO port E */
+/** GPIO port E */
 #define GPIO_E  ((volatile struct gpio *)0x40018000)
 
 /*

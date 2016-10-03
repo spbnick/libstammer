@@ -5,15 +5,15 @@
 #ifndef _STK_H
 #define _STK_H
 
-/* STK (SysTick) structure */
+/** STK (SysTick) structure */
 struct stk {
-    unsigned int ctrl;  /* Control and status register */
-    unsigned int load;  /* Reload value register */
-    unsigned int val;   /* Current value register */
-    unsigned int calib; /* Calibration value register */
+    unsigned int ctrl;  /**< Control and status register */
+    unsigned int load;  /**< Reload value register */
+    unsigned int val;   /**< Current value register */
+    unsigned int calib; /**< Calibration value register */
 };
 
-/* The STK (SysTick) instance */
+/** The STK (SysTick) instance */
 #define STK ((volatile struct stk *)0xe000e010)
 
 /*

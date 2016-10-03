@@ -5,9 +5,9 @@
 #ifndef _FLASH_H
 #define _FLASH_H
 
-/* Embedded flash control */
+/** Embedded flash control */
 struct flash {
-    unsigned int acr;       /* Access control register */
+    unsigned int acr;       /**< Access control register */
     unsigned int keyr;
     unsigned int optkeyr;
     unsigned int sr;
@@ -18,7 +18,7 @@ struct flash {
     unsigned int wrpr;
 };
 
-/* The embedded flash control instance */
+/** The embedded flash control instance */
 #define FLASH ((volatile struct flash *)0x40022000)
 
 #define FLASH_ACR_LATENCY_LSB   0

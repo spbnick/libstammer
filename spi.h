@@ -5,22 +5,22 @@
 #ifndef _SPI_H
 #define _SPI_H
 
-/* SPI (SPI and I2S) */
+/** SPI (SPI and I2S) */
 struct tim {
-    unsigned int cr1;       /* Control register 1 (SPI-only) */
-    unsigned int cr2;       /* Control register 2 */
-    unsigned int sr;        /* Status register */
-    unsigned int dr;        /* Data register */
-    unsigned int crcpr;     /* CRC polynomial register (SPI-only) */
-    unsigned int rxcrcr;    /* RX CRC register (SPI-only) */
-    unsigned int txcrcr;    /* TX CRC register (SPI-only) */
-    unsigned int i2scfgr;   /* I2S configuration register (I2S-only) */
-    unsigned int i2spr;     /* I2S prescaler register (I2S-only) */
+    unsigned int cr1;       /**< Control register 1 (SPI-only) */
+    unsigned int cr2;       /**< Control register 2 */
+    unsigned int sr;        /**< Status register */
+    unsigned int dr;        /**< Data register */
+    unsigned int crcpr;     /**< CRC polynomial register (SPI-only) */
+    unsigned int rxcrcr;    /**< RX CRC register (SPI-only) */
+    unsigned int txcrcr;    /**< TX CRC register (SPI-only) */
+    unsigned int i2scfgr;   /**< I2S configuration register (I2S-only) */
+    unsigned int i2spr;     /**< I2S prescaler register (I2S-only) */
 };
 
-/* The SPI1 instance */
+/** The SPI1 instance */
 #define SPI1 ((volatile struct spi *)0x40013000)
-/* The SPI2 instance */
+/** The SPI2 instance */
 #define SPI2 ((volatile struct spi *)0x40003800)
 
 /*

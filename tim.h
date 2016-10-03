@@ -5,37 +5,38 @@
 #ifndef _TIM_H
 #define _TIM_H
 
-/* TIM (timer) */
+/** TIM (timer) */
 struct tim {
-    unsigned int cr1;   /* Control register 1 */
-    unsigned int cr2;   /* Control register 2 */
-    unsigned int smcr;  /* Slave mode control register */
-    unsigned int dier;  /* DMA/interrupt enable register */
-    unsigned int sr;    /* Status register */
-    unsigned int egr;   /* Event generation register */
-    unsigned int ccmr1; /* Capture/compare mode register 1 */
-    unsigned int ccmr2; /* Capture/compare mode register 2 */
-    unsigned int ccer;  /* Capture/compare enable register */
-    unsigned int cnt;   /* Counter */
-    unsigned int psc;   /* Prescaler */
-    unsigned int arr;   /* Auto-reload register */
-    unsigned int rcr;   /* Repition counter register */
-    unsigned int ccr1;  /* Capture/compare register 1 */
-    unsigned int ccr2;  /* Capture/compare register 2 */
-    unsigned int ccr3;  /* Capture/compare register 3 */
-    unsigned int ccr4;  /* Capture/compare register 4 */
-    unsigned int bdtr;  /* Break and dead-time register */
-    unsigned int dcr;   /* DMA control register */
-    unsigned int dmar;  /* DMA address register (address for full transfer) */
+    unsigned int cr1;   /**< Control register 1 */
+    unsigned int cr2;   /**< Control register 2 */
+    unsigned int smcr;  /**< Slave mode control register */
+    unsigned int dier;  /**< DMA/interrupt enable register */
+    unsigned int sr;    /**< Status register */
+    unsigned int egr;   /**< Event generation register */
+    unsigned int ccmr1; /**< Capture/compare mode register 1 */
+    unsigned int ccmr2; /**< Capture/compare mode register 2 */
+    unsigned int ccer;  /**< Capture/compare enable register */
+    unsigned int cnt;   /**< Counter */
+    unsigned int psc;   /**< Prescaler */
+    unsigned int arr;   /**< Auto-reload register */
+    unsigned int rcr;   /**< Repition counter register */
+    unsigned int ccr1;  /**< Capture/compare register 1 */
+    unsigned int ccr2;  /**< Capture/compare register 2 */
+    unsigned int ccr3;  /**< Capture/compare register 3 */
+    unsigned int ccr4;  /**< Capture/compare register 4 */
+    unsigned int bdtr;  /**< Break and dead-time register */
+    unsigned int dcr;   /**< DMA control register */
+    unsigned int dmar;  /**< DMA address register
+                             (address for full transfer) */
 };
 
-/* The TIM1 (advanced control timer) instance */
+/** The TIM1 (advanced control timer) instance */
 #define TIM1 ((volatile struct tim *)0x40012c00)
-/* The TIM2 (general purpose timer) instance */
+/** The TIM2 (general purpose timer) instance */
 #define TIM2 ((volatile struct tim *)0x40000000)
-/* The TIM3 (general purpose timer) instance */
+/** The TIM3 (general purpose timer) instance */
 #define TIM3 ((volatile struct tim *)0x40000400)
-/* The TIM4 (general purpose timer) instance */
+/** The TIM4 (general purpose timer) instance */
 #define TIM4 ((volatile struct tim *)0x40000800)
 
 /*

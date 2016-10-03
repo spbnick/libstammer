@@ -5,21 +5,21 @@
 #ifndef _RCC_H
 #define _RCC_H
 
-/* Reset and clock control */
+/** Reset and clock control */
 struct rcc {
-    unsigned int cr;        /* Clock control register */
-    unsigned int cfgr;      /* Clock configuration register */
-    unsigned int cir;       /* Clock interrupt register */
-    unsigned int apb2rstr;  /* APB2 peripheral reset register */
-    unsigned int apb1rstr;  /* APB1 peripheral reset register */
-    unsigned int ahbenr;    /* AHB peripheral clock enable register */
-    unsigned int apb2enr;   /* APB2 peripheral clock enable register */
-    unsigned int apb1enr;   /* APB1 peripheral clock enable register */
-    unsigned int bdcr;      /* Backup domain control register */
-    unsigned int csr;       /* Control/status register */
+    unsigned int cr;        /**< Clock control register */
+    unsigned int cfgr;      /**< Clock configuration register */
+    unsigned int cir;       /**< Clock interrupt register */
+    unsigned int apb2rstr;  /**< APB2 peripheral reset register */
+    unsigned int apb1rstr;  /**< APB1 peripheral reset register */
+    unsigned int ahbenr;    /**< AHB peripheral clock enable register */
+    unsigned int apb2enr;   /**< APB2 peripheral clock enable register */
+    unsigned int apb1enr;   /**< APB1 peripheral clock enable register */
+    unsigned int bdcr;      /**< Backup domain control register */
+    unsigned int csr;       /**< Control/status register */
 };
 
-/* The RCC instance */
+/** The RCC instance */
 #define RCC ((volatile struct rcc *)0x40021000)
 
 /*
