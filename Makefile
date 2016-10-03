@@ -21,7 +21,7 @@ DEPS = $(addsuffix .d, $(MODULES))
 -include $(DEPS)
 
 libstammer.a: $(OBJS)
-	$(CC)ar rcs $@ $<
+	$(CC)ar rcs $@ $?
 
 clean:
 	rm -f $(OBJS)
