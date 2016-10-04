@@ -7,21 +7,20 @@
 
 /** NVIC (Nested Vectored Interrupt Controller) */
 struct nvic {
-    unsigned int iser[16];          /**< Interrupt set-enable registers */
-    unsigned int hole1[16];
-    unsigned int icer[16];          /**< Interrupt clear-enable registers */
-    unsigned int hole2[16];
-    unsigned int ispr[16];          /**< Interrupt set-pending registers */
-    unsigned int hole3[16];
-    unsigned int icpr[16];          /**< Interrupt clear-pending registers */
-    unsigned int hole4[16];
-    unsigned int iabr[16];          /**< Interrupt active bit registers */
-    unsigned int reserved1[48];
+    unsigned int iser[8];           /**< Interrupt set-enable registers */
+    unsigned int hole1[24];
+    unsigned int icer[8];           /**< Interrupt clear-enable registers */
+    unsigned int hole2[24];
+    unsigned int ispr[8];           /**< Interrupt set-pending registers */
+    unsigned int hole3[24];
+    unsigned int icpr[8];           /**< Interrupt clear-pending registers */
+    unsigned int hole4[24];
+    unsigned int iabr[8];           /**< Interrupt active bit registers */
+    unsigned int hole5[56];
     union {
-        unsigned int    ipr[124];   /**< Interrupt priority registers */
-        unsigned char   iprb[496];  /**< Interrupt priority register bytes */
+        unsigned int    ipr[60];    /**< Interrupt priority registers */
+        unsigned char   iprb[240];  /**< Interrupt priority register bytes */
     };
-    unsigned int reserved2[452];
 };
 
 /** The NVIC instance */
