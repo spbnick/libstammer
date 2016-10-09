@@ -530,4 +530,20 @@ extern void gpio_pin_conf(volatile struct gpio *gpio,
                           enum gpio_mode mode,
                           unsigned int cnf);
 
+/**
+ * Set the state of a single pin on a port.
+ *
+ * @param gpio  The GPIO port peripheral the pin resides on.
+ * @param pin   Index of the pin to set the state of.
+ * @param state The pin state to set, 0 - unset, otherwise - set.
+ */
+static inline void
+gpio_pin_set(volatile struct gpio *gpio,
+             unsigned int pin,
+             unsigned int state)
+{
+    pin |= ((unsigned int)!state) << 4;
+    gpio->bsrr = (1 << pin);
+}
+
 #endif /* _GPIO_H */
