@@ -519,7 +519,7 @@ enum gpio_cnf_output {
 /**
  * Configure a single pin on a port.
  *
- * @param gpio  A GPIO port peripheral.
+ * @param gpio  The GPIO port peripheral the pin resides on.
  * @param pin   Index of the pin to configure.
  * @param mode  Pin mode to use.
  * @param conf  Pin configuration to use according to the mode. Either an
