@@ -1,18 +1,19 @@
 CC=arm-none-eabi-
 
 TARGET_CFLAGS=-mcpu=cortex-m3 -mthumb
+COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -g3
 
 COMMON_MODULES = init
 
 all: libstammer.a
 
 %.o: %.c
-	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -c -o $@ $<
-	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -MM $< > $*.d
+	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -c -o $@ $<
+	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -MM $< > $*.d
 
 %.o: %.S
-	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -c -o $@ $<
-	$(CC)gcc $(TARGET_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
+	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -c -o $@ $<
+	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 MODULES = \
     init \
