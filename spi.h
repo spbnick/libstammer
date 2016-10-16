@@ -6,7 +6,7 @@
 #define _SPI_H
 
 /** SPI (SPI and I2S) */
-struct tim {
+struct spi {
     unsigned int cr1;       /**< Control register 1 (SPI-only) */
     unsigned int cr2;       /**< Control register 2 */
     unsigned int sr;        /**< Status register */
