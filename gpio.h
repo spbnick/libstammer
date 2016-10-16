@@ -546,4 +546,19 @@ gpio_pin_set(volatile struct gpio *gpio,
     gpio->bsrr = (1 << pin);
 }
 
+/**
+ * Get the state of a single pin on a port.
+ *
+ * @param gpio  The GPIO port peripheral the pin resides on.
+ * @param pin   Index of the pin to get the state of.
+ *
+ * @return The state of the pin: 1 for set, 0 for unset.
+ */
+static inline unsigned int
+gpio_pin_get(volatile struct gpio *gpio,
+             unsigned int pin)
+{
+    return (gpio->idr >> pin) & 1;
+}
+
 #endif /* _GPIO_H */
