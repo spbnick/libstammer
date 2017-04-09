@@ -25,16 +25,36 @@ struct rcc {
 /*
  * Clock control register bits
  */
+/* Internal high-speed clock enable */
+#define RCC_CR_HSION_LSB    0
+#define RCC_CR_HSION_MASK   (1 << RCC_CR_HSION_LSB)
+/* Internal high-speed clock ready flag */
+#define RCC_CR_HSIRDY_LSB   1
+#define RCC_CR_HSIRDY_MASK  (1 << RCC_CR_HSIRDY_LSB)
+/* Internal high-speed clock trimming */
+#define RCC_CR_HSITRIM_LSB  3
+#define RCC_CR_HSITRIM_MSB  7
+#define RCC_CR_HSITRIM_MASK (0x1f << RCC_CR_HSITRIM_LSB)
+/* Internal high-speed clock calibration */
+#define RCC_CR_HSICAL_LSB   8
+#define RCC_CR_HSICAL_MSB   15
+#define RCC_CR_HSICAL_MASK  (0xff << RCC_CR_HSICAL_LSB)
 /* HSE clock enable */
 #define RCC_CR_HSEON_LSB    16
 #define RCC_CR_HSEON_MASK   (1 << RCC_CR_HSEON_LSB)
 /* External high-speed clock ready flag */
 #define RCC_CR_HSERDY_LSB   17
 #define RCC_CR_HSERDY_MASK  (1 << RCC_CR_HSERDY_LSB)
+/* External high-speed clock bypass */
+#define RCC_CR_HSEBYP_LSB   18
+#define RCC_CR_HSEBYP_MASK  (1 << RCC_CR_HSEBYP_LSB)
+/* Clock security system enable */
+#define RCC_CR_CSSON_LSB    19
+#define RCC_CR_CSSON_MASK   (1 << RCC_CR_CSSON_LSB)
 /* PLL enable */
 #define RCC_CR_PLLON_LSB    24
 #define RCC_CR_PLLON_MASK   (1 << RCC_CR_PLLON_LSB)
-/* PLL ready */
+/* PLL clock ready flag */
 #define RCC_CR_PLLRDY_LSB   25
 #define RCC_CR_PLLRDY_MASK  (1 << RCC_CR_PLLRDY_LSB)
 
@@ -74,6 +94,14 @@ struct rcc {
 #define RCC_CFGR_PPRE2_VAL_DIV4     0x5 /* HCLK / 4 */
 #define RCC_CFGR_PPRE2_VAL_DIV8     0x6 /* HCLK / 8 */
 #define RCC_CFGR_PPRE2_VAL_DIV16    0x7 /* HCLK / 16 */
+/* ADC prescaler */
+#define RCC_CFGR_ADCPRE_LSB     14
+#define RCC_CFGR_ADCPRE_MSB     15
+#define RCC_CFGR_ADCPRE_MASK    (0x3 << RCC_CFGR_ADCPRE_LSB)
+#define RCC_CFGR_ADCPRE_VAL_PCLK2_DIV2  0   /* PCLK2 / 2 */
+#define RCC_CFGR_ADCPRE_VAL_PCLK2_DIV4  1   /* PCLK2 / 4 */
+#define RCC_CFGR_ADCPRE_VAL_PCLK2_DIV6  2   /* PCLK2 / 6 */
+#define RCC_CFGR_ADCPRE_VAL_PCLK2_DIV8  3   /* PCLK2 / 8 */
 /* PLL entry clock source */
 #define RCC_CFGR_PLLSRC_LSB     16
 #define RCC_CFGR_PLLSRC_MASK    (1 << RCC_CFGR_PLLSRC_LSB)
@@ -99,10 +127,20 @@ struct rcc {
 #define RCC_CFGR_PLLMUL_VAL_MUL14   0xc /* PLL input clock * 14 */
 #define RCC_CFGR_PLLMUL_VAL_MUL15   0xd /* PLL input clock * 15 */
 #define RCC_CFGR_PLLMUL_VAL_MUL16   0xe /* PLL input clock * 16 */
+/* USB prescaler */
+#define RCC_CFGR_USBPRE_LSB     22
+#define RCC_CFGR_USBPRE_MASK    (1 << RCC_CFGR_USBPRE_LSB)
+#define RCC_CFGR_USBPRE_VAL_PLL_DIV1_5  0
+#define RCC_CFGR_USBPRE_VAL_PLL_DIV1    1
 /* Microcontroller clock output */
 #define RCC_CFGR_MCO_LSB        24
 #define RCC_CFGR_MCO_MSB        26
 #define RCC_CFGR_MCO_MASK       (0x7 << RCC_CFGR_MCO_LSB)
+#define RCC_CFGR_MCO_VAL_NONE       0
+#define RCC_CFGR_MCO_VAL_SYS        4
+#define RCC_CFGR_MCO_VAL_HSI        5
+#define RCC_CFGR_MCO_VAL_HSE        6
+#define RCC_CFGR_MCO_VAL_PLL_DIV2   7
 
 /*
  * APB2 peripheral reset register bits
@@ -234,6 +272,31 @@ struct rcc {
 /* DAC interface reset */
 #define RCC_APB1RSTR_DACRST_LSB     29
 #define RCC_APB1RSTR_DACRST_MASK    (1 << RCC_APB1RSTR_DACRST_LSB)
+
+/*
+ * AHB peripheral clock enable register bits
+ */
+/* DMA1 clock enable */
+#define RCC_AHBENR_DMA1EN_LSB       0
+#define RCC_AHBENR_DMA1EN_MASK      (1 << RCC_AHBENR_DMA1EN_LSB)
+/* DMA2 clock enable */
+#define RCC_AHBENR_DMA2EN_LSB       1
+#define RCC_AHBENR_DMA2EN_MASK      (1 << RCC_AHBENR_DMA2EN_LSB)
+/* SRAM interface clock enable */
+#define RCC_AHBENR_SRAMEN_LSB       2
+#define RCC_AHBENR_SRAMEN_MASK      (1 << RCC_AHBENR_SRAMEN_LSB)
+/* FLITF clock enable */
+#define RCC_AHBENR_FLITFEN_LSB      4
+#define RCC_AHBENR_FLITFEN_MASK     (1 << RCC_AHBENR_FLITFEN_LSB)
+/* CRC clock enable */
+#define RCC_AHBENR_CRCEN_LSB        6
+#define RCC_AHBENR_CRCEN_MASK       (1 << RCC_AHBENR_CRCEN_LSB)
+/* FSMC clock enable */
+#define RCC_AHBENR_FSMCEN_LSB       8
+#define RCC_AHBENR_FSMCEN_MASK      (1 << RCC_AHBENR_FSMCEN_LSB)
+/* SDIO clock enable */
+#define RCC_AHBENR_SDIOEN_LSB       10
+#define RCC_AHBENR_SDIOEN_MASK      (1 << RCC_AHBENR_SDIOEN_LSB)
 
 /*
  * APB2 peripheral clock enable register bits
