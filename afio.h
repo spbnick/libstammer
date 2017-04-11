@@ -82,7 +82,8 @@ enum afio_evcr_port_val {
 #define AFIO_MAPR_TIM2_REMAP_MSB            9
 #define AFIO_MAPR_TIM2_REMAP_MASK           (0x3 << AFIO_MAPR_TIM2_REMAP_LSB)
 #define AFIO_MAPR_TIM2_REMAP_VAL_NO         0
-#define AFIO_MAPR_TIM2_REMAP_VAL_PARTIAL    2
+#define AFIO_MAPR_TIM2_REMAP_VAL_PARTIAL1   1
+#define AFIO_MAPR_TIM2_REMAP_VAL_PARTIAL2   2
 #define AFIO_MAPR_TIM2_REMAP_VAL_FULL       3
 /* TIM3 remapping */
 #define AFIO_MAPR_TIM3_REMAP_LSB            10
