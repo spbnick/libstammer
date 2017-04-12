@@ -14,8 +14,8 @@ all: libstammer.a
 	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 MODULES = \
-    init \
-    gpio
+    gpio \
+    init
 
 OBJS = $(addsuffix .o, $(MODULES))
 DEPS = $(addsuffix .d, $(MODULES))
