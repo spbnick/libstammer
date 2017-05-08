@@ -16,7 +16,8 @@ all: libstammer.a
 MODULES = \
     gpio \
     prng \
-    init
+    init \
+    vectors
 
 OBJS = $(addsuffix .o, $(MODULES))
 DEPS = $(addsuffix .d, $(MODULES))
