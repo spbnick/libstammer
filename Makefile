@@ -17,6 +17,7 @@ MODULES = \
     gpio \
     prng \
     init \
+    reset \
     vectors
 
 OBJS = $(addsuffix .o, $(MODULES))

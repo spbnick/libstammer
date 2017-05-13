@@ -94,10 +94,3 @@ handler dma2_channel4_5_irq_handler
 default_handler:
     wfi
     b default_handler
-
-.weak  reset_handler
-.type  reset_handler, %function
-.thumb_func
-reset_handler:
-    bl  main
-    bx  lr
