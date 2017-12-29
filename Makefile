@@ -1,4 +1,4 @@
-CC=arm-none-eabi-
+CCPFX=arm-none-eabi-
 
 TARGET_CFLAGS=-mcpu=cortex-m3 -mthumb
 COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3
@@ -6,12 +6,12 @@ COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3
 all: libstammer.a
 
 %.o: %.c
-	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -c -o $@ $<
-	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -MM $< > $*.d
+	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -c -o $@ $<
+	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -MM $< > $*.d
 
 %.o: %.S
-	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -c -o $@ $<
-	$(CC)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
+	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -c -o $@ $<
+	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 MODULES = \
     gpio \
@@ -25,7 +25,7 @@ DEPS = $(addsuffix .d, $(MODULES))
 -include $(DEPS)
 
 libstammer.a: $(OBJS)
-	$(CC)ar rcs $@ $?
+	$(CCPFX)ar rcs $@ $?
 
 clean:
 	rm -f $(OBJS)
