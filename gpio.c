@@ -2,7 +2,7 @@
  * GPIO
  */
 
-#include "gpio.h"
+#include <gpio.h>
 
 void
 gpio_pin_conf(volatile struct gpio *gpio,

@@ -1,7 +1,7 @@
 CCPFX=arm-none-eabi-
 
 TARGET_CFLAGS=-mcpu=cortex-m3 -mthumb
-COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3
+COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3 -I.
 
 all: libstammer.a
 
