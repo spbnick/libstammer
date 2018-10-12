@@ -78,7 +78,7 @@ struct usart {
  *
  * @return Baud rate register value.
  */
-static unsigned int
+static inline unsigned int
 usart_brr_val(unsigned int fck, unsigned int baud)
 {
     return fck / baud;
