@@ -5,6 +5,8 @@
 #ifndef _USART_H
 #define _USART_H
 
+#include <misc.h>
+
 /** USART structure */
 struct usart {
     unsigned int sr;    /**< Status register */
@@ -74,13 +76,14 @@ struct usart {
  * desired baud rate.
  *
  * @param fck   Functional clock frequency, Hz.
- * @param baud  Baud rate, baud.
+ * @param baud  Baud rate, baud. Cannot be zero.
  *
  * @return Baud rate register value.
  */
 static inline unsigned int
 usart_brr_val(unsigned int fck, unsigned int baud)
 {
+    assert(baud != 0);
     return fck / baud;
 }
 
