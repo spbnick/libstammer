@@ -15,6 +15,7 @@ all: libstammer.a
 
 MODULES = \
     gpio \
+    usart \
     prng \
     init \
     reset \

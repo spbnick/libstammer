@@ -219,4 +219,15 @@ usart_brr_val(unsigned int fck, unsigned int baud)
 #define USART_GTPR_GT_MSB       15
 #define USART_GTPR_GT_MASK      (0xff << USART_GTPR_GT_LSB)
 
+/**
+ * Initialize a USART.
+ *
+ * @param usart     The USART to initialize. Cannot be NULL.
+ * @param fck       The system's functional clock speed, Hz.
+ * @param baud      The baud rate to configure the USART with, baud.
+ *                  Cannot be zero.
+ */
+extern void usart_init(volatile struct usart *usart,
+                       unsigned int fck, unsigned int baud);
+
 #endif /* _USART_H */
