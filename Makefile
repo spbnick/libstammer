@@ -1,17 +1,17 @@
 CCPFX=arm-none-eabi-
 
 TARGET_CFLAGS=-mcpu=cortex-m3 -mthumb
-COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3 -I.
+COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3 -I. $(CFLAGS)
 
 all: libstammer.a
 
 %.o: %.c
-	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -c -o $@ $<
-	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -MM $< > $*.d
+	$(CCPFX)gcc $(COMMON_CFLAGS) -c -o $@ $<
+	$(CCPFX)gcc $(COMMON_CFLAGS) -MM $< > $*.d
 
 %.o: %.S
-	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -c -o $@ $<
-	$(CCPFX)gcc $(COMMON_CFLAGS) $(CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
+	$(CCPFX)gcc $(COMMON_CFLAGS) -D__ASSEMBLY__ -c -o $@ $<
+	$(CCPFX)gcc $(COMMON_CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 MODULES = \
     gpio \
