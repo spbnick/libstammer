@@ -19,7 +19,7 @@ struct tim {
     unsigned int cnt;   /**< Counter */
     unsigned int psc;   /**< Prescaler */
     unsigned int arr;   /**< Auto-reload register */
-    unsigned int rcr;   /**< Repition counter register */
+    unsigned int rcr;   /**< Repetition counter register */
     unsigned int ccr1;  /**< Capture/compare register 1 */
     unsigned int ccr2;  /**< Capture/compare register 2 */
     unsigned int ccr3;  /**< Capture/compare register 3 */
