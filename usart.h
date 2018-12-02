@@ -223,7 +223,7 @@ usart_brr_val(unsigned int fck, unsigned int baud)
  * Initialize a USART.
  *
  * @param usart     The USART to initialize. Cannot be NULL.
- * @param fck       The system's functional clock speed, Hz.
+ * @param fck       The functional clock frequency, Hz.
  * @param baud      The baud rate to configure the USART with, baud.
  *                  Cannot be zero.
  */
