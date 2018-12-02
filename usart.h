@@ -6,6 +6,7 @@
 #define _USART_H
 
 #include <misc.h>
+#include <stddef.h>
 
 /** USART structure */
 struct usart {
@@ -229,5 +230,16 @@ usart_brr_val(unsigned int fck, unsigned int baud)
  */
 extern void usart_init(volatile struct usart *usart,
                        unsigned int fck, unsigned int baud);
+
+/**
+ * Transmit data via a USART synchronously.
+ *
+ * @param usart     The USART to transmit data through.
+ * @param ptr       Pointer to the data to transmit.
+ *                  Cannot be NULL, unless "len" is zero.
+ * @param len       Length of the data to transmit.
+ */
+extern void usart_transmit(volatile struct usart *usart,
+                           const void *ptr, size_t len);
 
 #endif /* _USART_H */

@@ -3,7 +3,7 @@
  */
 
 #include <usart.h>
-#include <stddef.h>
+#include <stdint.h>
 
 void
 usart_init(volatile struct usart *usart,
@@ -22,4 +22,17 @@ usart_init(volatile struct usart *usart,
     usart->cr1 |= USART_CR1_RE_MASK | USART_CR1_TE_MASK;
 
     /* TODO Explicitly initialize the rest of device parameters */
+}
+
+void
+usart_transmit(volatile struct usart *usart, const void *ptr, size_t len)
+{
+    const uint8_t *p = ptr;
+    assert(usart != NULL);
+    assert(ptr != NULL || len == 0);
+
+    for (; len > 0; p++, len--) {
+        while (!(usart->sr & USART_SR_TXE_MASK));
+        usart->dr = *p;
+    }
 }
