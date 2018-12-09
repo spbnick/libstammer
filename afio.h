@@ -5,20 +5,16 @@
 #ifndef _AFIO_H
 #define _AFIO_H
 
+#include <misc.h>
+
 /** AFIO */
 struct afio {
     /** Event control register */
     unsigned int evcr;
     /** AF remap and debug I/O configuration register */
     unsigned int mapr;
-    /** External interrupt configuration register 1 */
-    unsigned int exticr1;
-    /** External interrupt configuration register 2 */
-    unsigned int exticr2;
-    /** External interrupt configuration register 3 */
-    unsigned int exticr3;
-    /** External interrupt configuration register 4 */
-    unsigned int exticr4;
+    /** External interrupt configuration registers */
+    unsigned int exticr[4];
     /** AF remap and debug I/O configuration register 2 */
     unsigned int mapr2;
 };
@@ -162,5 +158,37 @@ enum afio_evcr_port_val {
 #define AFIO_MAPR2_FSMC_NADV_MASK   (1 << AFIO_MAPR2_FSMC_NADV_LSB)
 #define AFIO_MAPR2_FSMC_NADV_VAL_CONN   0
 #define AFIO_MAPR2_FSMC_NADV_VAL_NOCONN 1
+
+/**
+ * External interrupt port
+ */
+enum afio_exti_port {
+    AFIO_EXTI_PORT_A,
+    AFIO_EXTI_PORT_B,
+    AFIO_EXTI_PORT_C,
+    AFIO_EXTI_PORT_D,
+    AFIO_EXTI_PORT_E,
+    AFIO_EXTI_PORT_F,
+    AFIO_EXTI_PORT_G,
+    /** Number of possible ports, not an actual port */
+    AFIO_EXTI_PORT_NUM
+};
+
+/**
+ * Select the source port for an external interrupt line/pin number.
+ *
+ * @param num   The port pin/interrupt line number to assign the port to.
+ *              Must be less than 16.
+ * @param port  The port to route the interrupt from.
+ */
+static inline void
+afio_exti_set_port(uint8_t num, enum afio_exti_port port)
+{
+    size_t reg = num >> 2;
+    size_t lsb = (num & 3) << 2;
+    assert(num < 16);
+    assert(port < AFIO_EXTI_PORT_NUM);
+    AFIO->exticr[reg] = (AFIO->exticr[reg] & (0x7 << lsb)) | (port << lsb);
+}
 
 #endif /* _AFIO_H */
