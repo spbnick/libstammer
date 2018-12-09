@@ -29,7 +29,7 @@ struct nvic {
 #define NVIC ((volatile struct nvic *)0xe000e100)
 
 /**
- * Interrupt positions.
+ * Interrupt numbers (positions).
  * Source: ST RM0008 Reference Manual, 10.1.2 Interrupt and exception vectors,
  *         Table 63. Vector table for other STM32F10xxx devices.
  */
