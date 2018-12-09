@@ -5,6 +5,8 @@
 #ifndef _NVIC_H
 #define _NVIC_H
 
+#include <misc.h>
+
 /** NVIC (Nested Vectored Interrupt Controller) */
 struct nvic {
     unsigned int iser[8];           /**< Interrupt set-enable registers */
@@ -91,7 +93,29 @@ enum nvic_int {
     NVIC_INT_DMA2_CHANNEL1,
     NVIC_INT_DMA2_CHANNEL2,
     NVIC_INT_DMA2_CHANNEL3,
-    NVIC_INT_DMA2_CHANNEL4_5
+    NVIC_INT_DMA2_CHANNEL4_5,
+    /** Number of interrupts, not an actual interrupt */
+    NVIC_INT_NUM
 };
+
+/**
+ * Enable an interrupt.
+ *
+ * @param num   Number of the interrupt to enable.
+ */
+static inline void
+nvic_int_set_enable(enum nvic_int num)
+{
+    assert(num < NVIC_INT_NUM);
+    NVIC->iser[num >> 5] |= 1 << (num & 0x1f);
+}
+
+/**
+ * Enable an external interrupt.
+ *
+ * @param ext_num   Number of the external interrupt to enable,
+ *                  must be less than 16.
+ */
+extern void nvic_int_set_enable_ext(unsigned int ext_num);
 
 #endif /* _NVIC_H */
