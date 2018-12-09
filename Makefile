@@ -15,10 +15,10 @@ all: libstammer.a
 
 MODULES = \
     gpio \
-    usart \
-    prng \
     init \
+    prng \
     reset \
+    usart \
     vectors
 
 OBJS = $(addsuffix .o, $(MODULES))
