@@ -111,11 +111,26 @@ nvic_int_set_enable(enum nvic_int num)
 }
 
 /**
+ * Get interrupt number of an external interrupt line.
+ *
+ * @param ext_num   Number of the external interrupt line to get the interrupt
+ *                  number for, must be less than 16.
+ *
+ * @return Interrupt number.
+ */
+extern enum nvic_int nvic_int_from_ext(unsigned int ext_num);
+
+/**
  * Enable an external interrupt.
  *
  * @param ext_num   Number of the external interrupt to enable,
  *                  must be less than 16.
  */
-extern void nvic_int_set_enable_ext(unsigned int ext_num);
+static inline void
+nvic_int_set_enable_ext(unsigned int ext_num)
+{
+    assert(ext_num < 16);
+    nvic_int_set_enable(nvic_int_from_ext(ext_num));
+}
 
 #endif /* _NVIC_H */
