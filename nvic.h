@@ -123,6 +123,30 @@ nvic_int_clear_enable(enum nvic_int num)
 }
 
 /**
+ * Set an interrupt "pending" status.
+ *
+ * @param num   Number of the interrupt to set the "pending" status for.
+ */
+static inline void
+nvic_int_set_pending(enum nvic_int num)
+{
+    assert(num < NVIC_INT_NUM);
+    NVIC->ispr[num >> 5] |= 1 << (num & 0x1f);
+}
+
+/**
+ * Clear an interrupt "pending" status.
+ *
+ * @param num   Number of the interrupt to clear the "pending" status for.
+ */
+static inline void
+nvic_int_clear_pending(enum nvic_int num)
+{
+    assert(num < NVIC_INT_NUM);
+    NVIC->icpr[num >> 5] |= 1 << (num & 0x1f);
+}
+
+/**
  * Get interrupt number of an external interrupt line.
  *
  * @param ext_num   Number of the external interrupt line to get the interrupt
@@ -156,6 +180,32 @@ nvic_int_clear_enable_ext(unsigned int ext_num)
 {
     assert(ext_num < 16);
     nvic_int_clear_enable(nvic_int_from_ext(ext_num));
+}
+
+/**
+ * Set "pending" status of an external interrupt.
+ *
+ * @param ext_num   Number of the external interrupt to set
+ *                  the "pending" status for.
+ */
+static inline void
+nvic_int_set_pending_ext(unsigned int ext_num)
+{
+    assert(ext_num < 16);
+    nvic_int_set_pending(nvic_int_from_ext(ext_num));
+}
+
+/**
+ * Clear "pending" status of an external interrupt.
+ *
+ * @param ext_num   Number of the external interrupt to clear
+ *                  the "pending" status for.
+ */
+static inline void
+nvic_int_clear_pending_ext(unsigned int ext_num)
+{
+    assert(ext_num < 16);
+    nvic_int_clear_pending(nvic_int_from_ext(ext_num));
 }
 
 #endif /* _NVIC_H */
