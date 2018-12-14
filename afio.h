@@ -6,6 +6,8 @@
 #define _AFIO_H
 
 #include <misc.h>
+#include <stddef.h>
+#include <stdint.h>
 
 /** AFIO */
 struct afio {
