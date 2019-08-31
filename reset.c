@@ -3,6 +3,7 @@
  */
 
 #include <reset.h>
+#include <misc.h>
 
 /** Initialized global data section storage start address (not aligned) */
 extern char _DATA_LOAD_START[];
@@ -28,21 +29,14 @@ extern int main(void);
 void
 reset_handler(void)
 {
-    char *src;
-    char *dst;
-
     /* Copy initialized global data to its runtime address, if necessary */
     if (_DATA_START != _DATA_LOAD_START) {
-        for (src = _DATA_LOAD_START, dst = _DATA_START;
-             src < _DATA_LOAD_END; src++, dst++) {
-            *dst = *src;
-        }
+        memcpy(_DATA_START, _DATA_LOAD_START,
+               _DATA_LOAD_END - _DATA_LOAD_START);
     }
 
     /* Initialize uninitialized static data */
-    for (dst = _BSS_START; dst < _BSS_END; dst++) {
-        *dst = 0;
-    }
+    memset(_BSS_START, 0, _BSS_END - _BSS_START);
 
     main();
 }

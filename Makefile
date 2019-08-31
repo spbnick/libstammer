@@ -16,6 +16,7 @@ all: libstammer.a
 MODULES = \
     gpio \
     init \
+    misc \
     nvic \
     prng \
     reset \
