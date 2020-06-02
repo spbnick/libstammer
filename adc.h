@@ -307,6 +307,7 @@ enum adc_smprx_smpx_val {
     ADC_SMPRX_SMPX_VAL_55_5C,
     ADC_SMPRX_SMPX_VAL_71_5C,
     ADC_SMPRX_SMPX_VAL_239_5C,
+    ADC_SMPRX_SMPX_VAL_NUM
 };
 
 /*
@@ -453,5 +454,38 @@ enum adc_smprx_smpx_val {
 #define ADC_DR_ADC2DATA_LSB     16
 #define ADC_DR_ADC2DATA_MSB     31
 #define ADC_DR_ADC2DATA_MASK    (0xffff << ADC_DR_ADC2DATA_LSB)
+
+/**
+ * Number of available ADC channels, including temperature sensor and Vrefint
+ */
+#define ADC_CHANNEL_NUM 17
+
+/**
+ * Set sample time for an ADC channel.
+ *
+ * @param adc           The ADC with the channel having sample time set.
+ * @param channel       The number of the channel to set sample time for.
+ * @param sample_time   The sample time to set.
+ */
+static inline void
+adc_channel_set_sample_time(volatile struct adc *adc,
+                            unsigned int channel,
+                            enum adc_smprx_smpx_val sample_time)
+{
+    static const unsigned int field_width = 3;
+    static const unsigned int mask = (1 << field_width) - 1;
+    static const unsigned int channels_per_reg =
+                                sizeof(*adc->smpr) / field_width;
+
+    assert(adc != NULL);
+    assert(channel < ADC_CHANNEL_NUM);
+    assert(sample_time < ADC_SMPRX_SMPX_VAL_NUM);
+
+    size_t reg = channel / channels_per_reg;
+    size_t lsb = (channel - reg * channels_per_reg) * field_width;
+
+    adc->smpr[1 - reg] = (adc->smpr[1 - reg] & ~(mask << lsb)) |
+                         sample_time << lsb;
+}
 
 #endif /* _ADC_H */
