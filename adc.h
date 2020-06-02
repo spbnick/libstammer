@@ -10,8 +10,13 @@ struct adc {
     unsigned int sr;    /**< Status register */
     unsigned int cr1;   /**< Control register 1 */
     unsigned int cr2;   /**< Control register 2 */
-    unsigned int smpr1; /**< Sample time register 1 */
-    unsigned int smpr2; /**< Sample time register 2 */
+    union {
+        struct {
+            unsigned int smpr1; /**< Sample time register 1 */
+            unsigned int smpr2; /**< Sample time register 2 */
+        };
+        unsigned int smpr[2];   /**< Sample time registers */
+    };
     union {
         struct {
             unsigned int jofr1; /**< Injected channel data offset register 1 */
