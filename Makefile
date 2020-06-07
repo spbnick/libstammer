@@ -20,6 +20,7 @@ MODULES = \
     nvic \
     prng \
     reset \
+    semihosting \
     usart \
     vectors
 
