@@ -56,7 +56,7 @@ enum semihosting_op {
 };
 
 void
-semihosting_write0(const char *ptr)
+semihosting_write0(const char *str)
 {
     asm(/* Operation */
         "mov r0, %0\n\t"
@@ -67,7 +67,7 @@ semihosting_write0(const char *ptr)
         /* Output operands */
         :
         /* Input operands */
-        : "i" (SEMIHOSTING_OP_SYS_WRITE0), "r" (ptr)
+        : "i" (SEMIHOSTING_OP_SYS_WRITE0), "r" (str)
         /* Clobbers */
         : "r0", "r1"
     );
