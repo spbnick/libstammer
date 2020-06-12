@@ -3,7 +3,7 @@
  */
 
 /**
- * Write a zero-terminated string to the host terminal.
+ * Write a null-terminated string to the host terminal.
  *
  * @param str   The pointer to the string to write.
  */
