@@ -7,4 +7,4 @@
  *
  * @param ptr   The pointer to the string to write.
  */
-extern void semihosting_write0(const uint8_t *ptr);
+extern void semihosting_write0(const char *ptr);
