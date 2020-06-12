@@ -5,6 +5,8 @@
  * http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0471m/pge1358787045051.html
  */
 
+#include <semihosting.h>
+
 /* Semihosting operation codes */
 enum semihosting_op {
     /** Open a file on the host system */
