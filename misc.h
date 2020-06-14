@@ -102,4 +102,16 @@ strlen(const char *s)
     return p - s;
 }
 
+/**
+ * Compare two null-terminated strings.
+ *
+ * @param s1    The first string to compare.
+ * @param s2    The second string to compare.
+ *
+ * @return  0 if s1 == s2.
+ *          1 if s1 > s2.
+ *         -1 if s1 < s2.
+ */
+extern int strcmp(const char *s1, const char *s2);
+
 #endif /* _MISC_H */
