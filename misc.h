@@ -57,4 +57,35 @@ extern void *memset(void *s, int c, size_t n);
  */
 extern void *memcpy(void *dest, const void *src, size_t n);
 
+/**
+ * Compare two memory areas of different lengths.
+ *
+ * @param p1    Pointer to the first memory area.
+ * @param l1    Length of the first memory area.
+ * @param p2    Pointer to the second memory area.
+ * @param l1    Length of the second memory area.
+ *
+ * @return  0 if p1 == p2.
+ *          1 if p1 > p2.
+ *         -1 if p2 < p2.
+ */
+extern int memcmp2(const void *p1, size_t l1, const void *p2, size_t l2);
+
+/**
+ * Compare two memory areas of the same length.
+ *
+ * @param p1    Pointer to the first memory area.
+ * @param p2    Pointer to the second memory area.
+ * @param l     Length of each memory area.
+ *
+ * @return  0 if p1 == p2.
+ *          1 if p1 > p2.
+ *         -1 if p2 < p2.
+ */
+static inline int
+memcmp(const void *p1, const void *p2, size_t l)
+{
+    return memcmp2(p1, l, p2, l);
+}
+
 #endif /* _MISC_H */
