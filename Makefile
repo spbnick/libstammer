@@ -14,6 +14,7 @@ all: libstammer.a
 	$(CCPFX)gcc $(COMMON_CFLAGS) -D__ASSEMBLY__ -MM $< > $*.d
 
 MODULES = \
+    test \
     gpio \
     init \
     misc \
