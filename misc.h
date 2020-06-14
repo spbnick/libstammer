@@ -87,4 +87,19 @@ memcmp(const void *p1, const void *p2, size_t l)
     return memcmp2(p1, l, p2, l);
 }
 
+/**
+ * Calculate null-terminated string length.
+ *
+ * @param s The string to calculate the length of.
+ *
+ * @return The length of the string, bytes.
+ */
+static inline size_t
+strlen(const char *s)
+{
+    const char *p;
+    for (p = s; *p; p++);
+    return p - s;
+}
+
 #endif /* _MISC_H */
