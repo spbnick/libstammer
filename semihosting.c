@@ -6,6 +6,8 @@
  */
 
 #include <semihosting.h>
+#include <misc.h>
+#include <stdarg.h>
 
 /* Semihosting operation codes */
 enum semihosting_op {
@@ -71,4 +73,17 @@ semihosting_write0(const char *str)
         /* Clobbers */
         : "r0", "r1"
     );
+}
+
+size_t
+semihosting_printf(const char *fmt, ...)
+{
+    char buf[256];
+    va_list ap;
+    size_t out_len;
+    va_start(ap, fmt);
+    out_len = vsnprintf(buf, sizeof(buf), fmt, ap);
+    va_end(ap);
+    semihosting_write0(buf);
+    return MAX(out_len, sizeof(buf) - 1);
 }
