@@ -2,9 +2,9 @@
  * Common initialization
  */
 
-#include <rcc.h>
-#include <flash.h>
-#include <init.h>
+#include <stm32/rcc.h>
+#include <stm32/flash.h>
+#include <stm32/init.h>
 
 void
 init(void)

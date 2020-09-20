@@ -2,7 +2,7 @@
  * Pseudo-random number generator (PRNG)
  */
 
-#include <prng.h>
+#include <stm32/prng.h>
 
 static uint32_t
 prng_calc(uint32_t state)

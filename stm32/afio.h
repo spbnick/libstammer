@@ -5,7 +5,7 @@
 #ifndef _AFIO_H
 #define _AFIO_H
 
-#include <misc.h>
+#include <stm32/misc.h>
 #include <stddef.h>
 #include <stdint.h>
 

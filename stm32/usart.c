@@ -2,7 +2,7 @@
  * USART (Universal Synchronous/Asynchronous Receiver/Transmitter)
  */
 
-#include <usart.h>
+#include <stm32/usart.h>
 #include <stdint.h>
 
 void

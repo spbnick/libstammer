@@ -5,8 +5,8 @@
  * http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0471m/pge1358787045051.html
  */
 
-#include <semihosting.h>
-#include <misc.h>
+#include <stm32/semihosting.h>
+#include <stm32/misc.h>
 #include <stdarg.h>
 
 /* Semihosting operation codes */

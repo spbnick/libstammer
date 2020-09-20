@@ -2,8 +2,8 @@
  * Library test
  */
 
-#include <test.h>
-#include <misc.h>
+#include <stm32/test.h>
+#include <stm32/misc.h>
 
 /**
  * Test the memcmp2 function.
