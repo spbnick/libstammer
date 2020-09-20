@@ -57,3 +57,17 @@ use with -I and -L.
 
 However, how are we then going to do the library's internal includes?
 Relative paths, perhaps?
+------
+How can we let users include header files from more general directories. E.g.
+when the user is building and using the stm32f103c8t6 target, and some files
+are defined at the stm32f level. Let's say gpio.h is there, and the user wants
+to include it with "#include <gpio.h>". How do we make sure that can happen?
+
+- We make the users specify all the directories leading to the specific
+  directory using the -I option. Inconvenient, forces the user to find out
+  what's required, and easy to get wrong and get out-of-sync.
+
+- We put (links to) all files into each specific directory. Perhaps
+  automatically, at build time? But for the start manually?
+  Let's try that.
+
