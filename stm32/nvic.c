@@ -2,7 +2,7 @@
  * NVIC (Nested Vectored Interrupt Controller)
  */
 
-#include <stm32/nvic.h>
+#include <../stm32/nvic.h>
 
 enum nvic_int
 nvic_int_from_ext(unsigned int ext_num)

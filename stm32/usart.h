@@ -5,7 +5,7 @@
 #ifndef _USART_H
 #define _USART_H
 
-#include <stm32/misc.h>
+#include <../stm32/misc.h>
 #include <stddef.h>
 
 /** USART structure */

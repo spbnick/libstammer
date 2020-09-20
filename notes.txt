@@ -36,4 +36,24 @@ Then how do we build the library with support for multiple targets?
 
 If they're compatible, they would share common pieces of Makefiles
 
+------
+We don't want to have the target's name in header paths when using the
+library, because that could lead to issues when switching the target in a
+project. E.g. when some file is not updated to point to the new target's
+header.
 
+I.e. we don't want to have to write this in projects using the library:
+
+    #include <stm32f103c8t6/gpio.h>
+
+We want to write this:
+
+    #include <gpio.h>
+
+And have the path to the headers specified with -I.
+
+In general, we want to point to a particular subdir of the library we want to
+use with -I and -L.
+
+However, how are we then going to do the library's internal includes?
+Relative paths, perhaps?

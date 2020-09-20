@@ -2,8 +2,8 @@
  * Reset-time implicit initialization
  */
 
-#include <stm32/reset.h>
-#include <stm32/misc.h>
+#include <../stm32/reset.h>
+#include <../stm32/misc.h>
 
 /** Initialized global data section storage start address (not aligned) */
 extern char _DATA_LOAD_START[];

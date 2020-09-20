@@ -2,7 +2,7 @@
  * Miscellaneous definitions
  */
 
-#include <stm32/misc.h>
+#include <../stm32/misc.h>
 #include <stdint.h>
 #include <stdbool.h>
 

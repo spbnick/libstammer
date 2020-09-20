@@ -1,6 +1,6 @@
 CCPFX=arm-none-eabi-
 
-COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3 -I.. $(CFLAGS)
+COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3 -I. $(CFLAGS)
 
 all: libstammer.a
 

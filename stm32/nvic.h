@@ -5,7 +5,7 @@
 #ifndef _NVIC_H
 #define _NVIC_H
 
-#include <stm32/misc.h>
+#include <../stm32/misc.h>
 
 /** NVIC (Nested Vectored Interrupt Controller) */
 struct nvic {
