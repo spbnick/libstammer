@@ -1,0 +1,39 @@
+NOTES
+
+---
+These are just running notes, or what the Rubber Duck would hear.
+They don't have to make sense, but could still be useful.
+---
+
+Principles:
+    The library provides parts only
+    The project puts them together
+    The project is driving the library
+    The library is not driving the project
+    The library makes no assumptions about the project
+
+Decisions:
+    The library is built together with the project?
+        - No, too much 
+OR
+    The library is built separately with appropriate parameters.
+    The project can be built with other parameters.
+    We build library once, as we need it, and we can share it between projects
+        - YES
+OR
+    We build the library together with the project, but in the project directory
+    I.e. one library build per project
+        - No, too much build overhead
+
+The library accepts the following when building:
+    ...
+
+The problem could be that files for some targets can only be compiled with
+certain options. The solution could be providing a separate Makefile for each
+target to build the library with default options set.
+
+Then how do we build the library with support for multiple targets?
+
+If they're compatible, they would share common pieces of Makefiles
+
+
