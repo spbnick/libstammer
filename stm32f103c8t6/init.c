@@ -2,8 +2,8 @@
  * Common initialization
  */
 
-#include <../stm32/rcc.h>
-#include <../stm32/flash.h>
+#include <../stm32f103c8t6/rcc.h>
+#include <../stm32f103c8t6/flash.h>
 #include <../stm32/init.h>
 
 void
