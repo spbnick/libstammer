@@ -4,6 +4,7 @@
 
 #include <../stm32/reset.h>
 #include <../stm32/misc.h>
+#include <string.h>
 
 /** Initialized global data section storage start address (not aligned) */
 extern char _DATA_LOAD_START[];

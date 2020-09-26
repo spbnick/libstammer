@@ -4,6 +4,7 @@
 
 #include <../stm32/test.h>
 #include <../stm32/misc.h>
+#include <string.h>
 
 /**
  * Test the memcmp2 function.
@@ -28,34 +29,6 @@ test_memcmp2(void)
     passed = memcmp2("xx", 2, "x", 1) == 1 && passed;
     passed = memcmp2("xy", 2, "xx", 2) == 1 && passed;
     passed = memcmp2("xx", 2, "xy", 2) == -1 && passed;
-    return passed;
-}
-
-/**
- * Test the strcmp function.
- *
- * @return True if the function works correctly, false otherwise.
- */
-static bool
-test_strcmp(void)
-{
-    bool passed = true;
-    passed = strcmp("", "") == 0 && passed;
-    passed = strcmp("x", "") == 1 && passed;
-    passed = strcmp("", "x") == -1 && passed;
-    passed = strcmp("xx", "") == 1 && passed;
-    passed = strcmp("", "xx") == -1 && passed;
-    passed = strcmp("x", "x") == 0 && passed;
-    passed = strcmp("y", "x") == 1 && passed;
-    passed = strcmp("x", "y") == -1 && passed;
-    passed = strcmp("xx", "xx") == 0 && passed;
-    passed = strcmp("xx", "x") == 1 && passed;
-    passed = strcmp("x", "xx") == -1 && passed;
-    passed = strcmp("xy", "xx") == 1 && passed;
-    passed = strcmp("xx", "xy") == -1 && passed;
-    passed = strcmp("xx", "xx") == 0 && passed;
-    passed = strcmp("yx", "xx") == 1 && passed;
-    passed = strcmp("xx", "yx") == -1 && passed;
     return passed;
 }
 
@@ -208,7 +181,6 @@ test(void)
 {
     bool passed = true;
     passed = test_memcmp2() && passed;
-    passed = test_strcmp() && passed;
     passed = test_snprintf() && passed;
     return passed;
 }
