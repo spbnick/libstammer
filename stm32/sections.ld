@@ -2,7 +2,7 @@
  * Output sections
  */
 SECTIONS {
-    .vectors        : { *(.vectors) } >flash
+    .vectors        : { vectors.o(.vectors) } >flash
     .text           : { *(.text) } >flash
     .rodata         : { *(.rodata) } >flash
 
