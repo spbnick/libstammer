@@ -94,3 +94,7 @@ compiler complain if there are mismatches? Wow, sounds great! We just need to
 make sure they use different header guard macros. Copy-pasting those
 declarations around wouldn't be fun, though. Perhaps we can have common
 headers, which we reuse for some of those common definitions.
+----
+Another thing about HAL: how do we separate private target-specific
+declarations from HAL? Do we have specially-named headers? Put them into .c
+files for HAL implementation directly?
