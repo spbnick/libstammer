@@ -71,3 +71,26 @@ to include it with "#include <gpio.h>". How do we make sure that can happen?
   automatically, at build time? But for the start manually?
   Let's try that.
 
+----
+How are we going to maintain the inheritance VS consistent user API?
+I.e. how do we maintain the hardware abstraction layer (HAL)?
+
+A parent implements only the features common across its children. Each child
+implements its own idiosyncrasies. And so on. They're all different. What
+we're building here is just a translation of the reference documentation to a
+C API, with minimal modification. Where should the HAL live?
+
+First of all, each of the target-specific libraries should also deal with
+translating their HW API to the HAL API. They should also define which parts
+of the HAL API are available. In the simplest implementation, they could
+simply provide the headers defining interfaces identical to all other targets.
+
+However, how do we make sure that each of those is a subset of the expected
+HAL, the standard HAL? Can we e.g. include each of the corresponding headers
+and let the compiler complain if the redefinitions don't match?
+
+Oh, how about we just include all the headers with matching names and let the
+compiler complain if there are mismatches? Wow, sounds great! We just need to
+make sure they use different header guard macros. Copy-pasting those
+declarations around wouldn't be fun, though. Perhaps we can have common
+headers, which we reuse for some of those common definitions.
