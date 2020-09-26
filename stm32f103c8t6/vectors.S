@@ -1,18 +1,4 @@
-.syntax unified
-
-.section ".vectors", "ax"
-
-/* Define a vector table entry and a handler symbol */
-.macro handler name
-    .word \name
-    .weak \name
-    .thumb_set \name, default_handler
-.endm
-
-/* Stack top */
-.word _STACK_END
-/* Handlers */
-.word reset_handler
+.include "../stm32/vectors.S.inc"
 handler nmi_handler
 handler hardfault_handler
 handler memmanage_handler
@@ -87,10 +73,3 @@ handler dma2_channel1_irq_handler
 handler dma2_channel2_irq_handler
 handler dma2_channel3_irq_handler
 handler dma2_channel4_5_irq_handler
-
-.section ".text"
-
-.thumb_func
-default_handler:
-    wfi
-    b default_handler
