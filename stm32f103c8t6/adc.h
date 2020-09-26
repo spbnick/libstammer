@@ -5,6 +5,8 @@
 #ifndef _ADC_H
 #define _ADC_H
 
+#include <../stm32/misc.h>
+
 /** ADC */
 struct adc {
     unsigned int sr;    /**< Status register */
