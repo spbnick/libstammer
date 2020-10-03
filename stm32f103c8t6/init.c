@@ -4,7 +4,7 @@
 
 #include <../stm32f103c8t6/rcc.h>
 #include <../stm32f103c8t6/flash.h>
-#include <../stm32/init.h>
+#include <../stm32f103c8t6/init.h>
 
 void
 init(void)
