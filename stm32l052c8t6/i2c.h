@@ -21,11 +21,11 @@ struct i2c {
 };
 
 /** The I2C1 instance */
-#define I2C1 ((volatile struct spi *)0x40005400)
+#define I2C1 ((volatile struct i2c *)0x40005400)
 /** The I2C2 instance */
-#define I2C2 ((volatile struct spi *)0x40005800)
+#define I2C2 ((volatile struct i2c *)0x40005800)
 /** The I2C3 instance */
-#define I2C3 ((volatile struct spi *)0x40007800)
+#define I2C3 ((volatile struct i2c *)0x40007800)
 
 /*
  * Control register 1 bits
