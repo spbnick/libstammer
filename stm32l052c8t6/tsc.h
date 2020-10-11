@@ -91,7 +91,7 @@ enum tsc_cr_iodef_val {
 #define TSC_CR_SYNCPOL_LSB  3
 #define TSC_CR_SYNCPOL_MASK (1 << TSC_CR_SYNCPOL_LSB)
 /**< Synchronization pin polarity value */
-enum tsc_cr_iodef_val {
+enum tsc_cr_syncpol_val {
     TSC_CR_SYNCPOL_VAL_FALLING_EDGE_ONLY,
     TSC_CR_SYNCPOL_VAL_RISING_EDGE_AND_HIGH_LEVEL
 };
@@ -99,13 +99,13 @@ enum tsc_cr_iodef_val {
 #define TSC_CR_AM_LSB   2
 #define TSC_CR_AM_MASK  (1 << TSC_CR_AM_LSB)
 /**< Acquisition mode value */
-enum tsc_cr_iodef_val {
+enum tsc_cr_am_val {
     TSC_CR_AM_VAL_NORMAL,
     TSC_CR_AM_VAL_SYNC
 };
 /* Start a new acquisition bit */
-#define TSC_CR_AM_LSB   1
-#define TSC_CR_AM_MASK  (1 << TSC_CR_AM_LSB)
+#define TSC_CR_START_LSB    1
+#define TSC_CR_START_MASK   (1 << TSC_CR_START_LSB)
 /* Touch sensing controller enable bit */
 #define TSC_CR_TSCE_LSB     0
 #define TSC_CR_TSCE_MASK    (1 << TSC_CR_TSCE_LSB)
