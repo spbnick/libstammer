@@ -2,8 +2,8 @@
  * Reset and clock control
  */
 
-#ifndef _RCC_H
-#define _RCC_H
+#ifndef _STM32F103C8T6_RCC_H
+#define _STM32F103C8T6_RCC_H
 
 /** Reset and clock control */
 struct rcc {
@@ -429,4 +429,4 @@ struct rcc {
 #define RCC_APB1ENR_DACEN_LSB       29
 #define RCC_APB1ENR_DACEN_MASK      (1 << RCC_APB1ENR_DACEN_LSB)
 
-#endif /* _RCC_H */
+#endif /* _STM32F103C8T6_RCC_H */

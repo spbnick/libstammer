@@ -2,8 +2,8 @@
  * AFIO (Alternate function I/O)
  */
 
-#ifndef _AFIO_H
-#define _AFIO_H
+#ifndef _STM32F103C8T6_AFIO_H
+#define _STM32F103C8T6_AFIO_H
 
 #include <../stm32/misc.h>
 #include <stddef.h>
@@ -193,4 +193,4 @@ afio_exti_set_port(uint8_t num, enum afio_exti_port port)
     AFIO->exticr[reg] = (AFIO->exticr[reg] & (0x7 << lsb)) | (port << lsb);
 }
 
-#endif /* _AFIO_H */
+#endif /* _STM32F103C8T6_AFIO_H */

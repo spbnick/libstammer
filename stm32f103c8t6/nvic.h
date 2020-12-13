@@ -2,8 +2,8 @@
  * NVIC (Nested Vectored Interrupt Controller)
  */
 
-#ifndef _NVIC_H
-#define _NVIC_H
+#ifndef _STM32F103C8T6_NVIC_H
+#define _STM32F103C8T6_NVIC_H
 
 #include <../stm32/misc.h>
 
@@ -208,4 +208,4 @@ nvic_int_clear_pending_ext(unsigned int ext_num)
     nvic_int_clear_pending(nvic_int_from_ext(ext_num));
 }
 
-#endif /* _NVIC_H */
+#endif /* _STM32F103C8T6_NVIC_H */

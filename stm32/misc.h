@@ -2,8 +2,8 @@
  * Miscellaneous definitions
  */
 
-#ifndef _MISC_H
-#define _MISC_H
+#ifndef _STM32_MISC_H
+#define _STM32_MISC_H
 
 #include <stddef.h>
 #include <stdarg.h>
@@ -99,4 +99,4 @@ extern size_t snprintf(char *buf_ptr, size_t buf_len,
                        const char *fmt, ...)
                        __attribute__ ((format (printf, 3, 4)));
 
-#endif /* _MISC_H */
+#endif /* _STM32_MISC_H */

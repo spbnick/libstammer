@@ -2,8 +2,8 @@
  * SPI (SPI and I2S)
  */
 
-#ifndef _SPI_H
-#define _SPI_H
+#ifndef _STM32F103C8T6_SPI_H
+#define _STM32F103C8T6_SPI_H
 
 /** SPI (SPI and I2S) */
 struct spi {
@@ -202,4 +202,4 @@ struct spi {
 #define SPI_I2SPR_MCKOE_LSB     9
 #define SPI_I2SPR_MCKOE_MASK    (1 << SPI_I2SPR_MCKOE_LSB)
 
-#endif /* _SPI_H */
+#endif /* _STM32F103C8T6_SPI_H */

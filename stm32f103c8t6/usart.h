@@ -2,8 +2,8 @@
  * USART (Universal Synchronous/Asynchronous Receiver/Transmitter)
  */
 
-#ifndef _USART_H
-#define _USART_H
+#ifndef _STM32F103C8T6_USART_H
+#define _STM32F103C8T6_USART_H
 
 #include <../stm32/misc.h>
 #include <stddef.h>
@@ -242,4 +242,4 @@ extern void usart_init(volatile struct usart *usart,
 extern void usart_transmit(volatile struct usart *usart,
                            const void *ptr, size_t len);
 
-#endif /* _USART_H */
+#endif /* _STM32F103C8T6_USART_H */

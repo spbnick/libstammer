@@ -2,8 +2,8 @@
  * STK (SysTick timer)
  */
 
-#ifndef _STK_H
-#define _STK_H
+#ifndef _STM32_STK_H
+#define _STM32_STK_H
 
 /** STK (SysTick) structure */
 struct stk {
@@ -64,4 +64,4 @@ struct stk {
 #define STK_CALIB_NOREF_LSB     31
 #define STK_CALIB_NOREF_MASK    (1 << STK_CALIB_NOREF_LSB)
 
-#endif /* _STK_H */
+#endif /* _STM32_STK_H */

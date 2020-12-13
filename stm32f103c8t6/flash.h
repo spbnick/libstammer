@@ -2,8 +2,8 @@
  * Embedded flash control
  */
 
-#ifndef _FLASH_H
-#define _FLASH_H
+#ifndef _STM32F103C8T6_FLASH_H
+#define _STM32F103C8T6_FLASH_H
 
 /** Embedded flash control */
 struct flash {
@@ -28,4 +28,4 @@ struct flash {
 #define FLASH_ACR_LATENCY_VAL_1WS   0x1 /* 1 wait state  SYSCLK (24,48] MHz */
 #define FLASH_ACR_LATENCY_VAL_2WS   0x2 /* 2 wait states SYSCLK (48,72] MHz */
 
-#endif /* _FLASH_H */
+#endif /* _STM32F103C8T6_FLASH_H */

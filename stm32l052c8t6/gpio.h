@@ -2,8 +2,8 @@
  * GPIO
  */
 
-#ifndef _GPIO_H
-#define _GPIO_H
+#ifndef _STM32L052C8T6_GPIO_H
+#define _STM32L052C8T6_GPIO_H
 
 /** GPIO */
 struct gpio {
@@ -714,4 +714,4 @@ enum gpio_afsel {
 #define GPIO_BRR_BR15_LSB  15
 #define GPIO_BRR_BR15_MASK (1 << GPIO_BRR_BR15_LSB)
 
-#endif /* _GPIO_H */
+#endif /* _STM32L052C8T6_GPIO_H */

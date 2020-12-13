@@ -2,8 +2,8 @@
  * I2C interface
  */
 
-#ifndef _I2C_H
-#define _I2C_H
+#ifndef _STM32L052C8T6_I2C_H
+#define _STM32L052C8T6_I2C_H
 
 /* I2C interface */
 struct i2c {
@@ -316,4 +316,4 @@ struct i2c {
 #define I2C_TXDR_TXDATA_MSB     7
 #define I2C_TXDR_TXDATA_MASK    (0xff << I2C_TXDR_TXDATA_LSB)
 
-#endif /* _I2C_H */
+#endif /* _STM32L052C8T6_I2C_H */

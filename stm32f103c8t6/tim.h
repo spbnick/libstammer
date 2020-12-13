@@ -2,8 +2,8 @@
  * TIM (timer)
  */
 
-#ifndef _TIM_H
-#define _TIM_H
+#ifndef _STM32F103C8T6_TIM_H
+#define _STM32F103C8T6_TIM_H
 
 /** TIM (timer) */
 struct tim {
@@ -466,4 +466,4 @@ struct tim {
 #define TIM_DCR_DBL_MSB         12
 #define TIM_DCR_DBL_MASK        (0x1f << TIM_DCR_DBL_LSB)
 
-#endif /* _TIM_H */
+#endif /* _STM32F103C8T6_TIM_H */

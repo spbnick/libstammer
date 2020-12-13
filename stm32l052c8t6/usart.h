@@ -2,8 +2,8 @@
  * USART (Universal Synchronous/Asynchronous Receiver/Transmitter)
  */
 
-#ifndef _USART_H
-#define _USART_H
+#ifndef _STM32L052C8T6_USART_H
+#define _STM32L052C8T6_USART_H
 
 #include <../stm32/misc.h>
 #include <stddef.h>
@@ -445,4 +445,4 @@ enum usart_cr3_dep_val {
 #define USART_TDR_TDR_MSB       8
 #define USART_TDR_TDR_MASK      (0x1ff << USART_TDR_TDR_LSB)
 
-#endif /* _USART_H */
+#endif /* _STM32L052C8T6_USART_H */

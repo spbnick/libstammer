@@ -2,8 +2,8 @@
  * GPIO
  */
 
-#ifndef _GPIO_H
-#define _GPIO_H
+#ifndef _STM32F103C8T6_GPIO_H
+#define _STM32F103C8T6_GPIO_H
 
 /** GPIO */
 struct gpio {
@@ -561,4 +561,4 @@ gpio_pin_get(volatile struct gpio *gpio,
     return (gpio->idr >> pin) & 1;
 }
 
-#endif /* _GPIO_H */
+#endif /* _STM32F103C8T6_GPIO_H */

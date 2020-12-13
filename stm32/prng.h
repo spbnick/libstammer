@@ -4,8 +4,8 @@
 
 #include <stdint.h>
 
-#ifndef _PRNG_H
-#define _PRNG_H
+#ifndef _STM32_PRNG_H
+#define _STM32_PRNG_H
 
 /** Maximum generated random number */
 #define PRNG_MAX    (UINT32_MAX - 1)
@@ -24,4 +24,4 @@ extern void prng_seed(uint32_t seed);
  */
 extern uint32_t prng_next(void);
 
-#endif /* _PRNG_H */
+#endif /* _STM32_PRNG_H */

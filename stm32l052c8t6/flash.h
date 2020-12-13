@@ -2,8 +2,8 @@
  * Flash program memory and data EEPROM
  */
 
-#ifndef _FLASH_H
-#define _FLASH_H
+#ifndef _STM32L052C8T6_FLASH_H
+#define _STM32L052C8T6_FLASH_H
 
 /** Flash program memory and data EEPROM */
 struct flash {
@@ -30,4 +30,4 @@ struct flash {
 /* 1 wait state (SYSCLK R1:32MHz, R2:16MHz) */
 #define FLASH_ACR_LATENCY_VAL_1WS   0x1
 
-#endif /* _FLASH_H */
+#endif /* _STM32L052C8T6_FLASH_H */

@@ -2,8 +2,8 @@
  * Library test
  */
 
-#ifndef _TEST_H
-#define _TEST_H
+#ifndef _STM32_TEST_H
+#define _STM32_TEST_H
 
 #include <stdbool.h>
 
@@ -14,4 +14,4 @@
  */
 extern bool test(void);
 
-#endif /* _TEST_H */
+#endif /* _STM32_TEST_H */

@@ -2,8 +2,8 @@
  * Reset and clock control
  */
 
-#ifndef _RCC_H
-#define _RCC_H
+#ifndef _STM32L052C8T6_RCC_H
+#define _STM32L052C8T6_RCC_H
 
 /** Reset and clock control */
 struct rcc {
@@ -332,4 +332,4 @@ enum rcc_cfgr_sw_val {
 /* Timer 2 clock enable bit */
 #define RCC_APB1ENR_TIM2EN_LSB  1
 #define RCC_APB1ENR_TIM2EN_MASK (1 << RCC_APB1ENR_TIM2EN_LSB)
-#endif /* _RCC_H */
+#endif /* _STM32L052C8T6_RCC_H */

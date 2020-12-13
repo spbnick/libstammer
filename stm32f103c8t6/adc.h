@@ -2,8 +2,8 @@
  * ADC
  */
 
-#ifndef _ADC_H
-#define _ADC_H
+#ifndef _STM32F103C8T6_ADC_H
+#define _STM32F103C8T6_ADC_H
 
 #include <../stm32/misc.h>
 
@@ -490,4 +490,4 @@ adc_channel_set_sample_time(volatile struct adc *adc,
                          sample_time << lsb;
 }
 
-#endif /* _ADC_H */
+#endif /* _STM32F103C8T6_ADC_H */
