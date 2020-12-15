@@ -1,0 +1,71 @@
+#!/bin/bash
+#
+# Propagate include files down the inheritance tree
+#
+
+set -e -u -o pipefail -o noclobber
+shopt -s nullglob
+
+# Parent dir link regex
+PARENT_DIR_LINK_RE='^\.\./[a-z0-9_]+$'
+
+# .h (C) include file format string
+INCLUDE_FORMAT_H="\
+#include <%s>
+"
+
+# An include file glob -> format string dictionary
+declare -r -A GLOB_FORMATS=(
+    ["*.h"]="$INCLUDE_FORMAT_H"
+)
+
+# A dir -> child dirs dictionary
+declare -A DIR_CHILDREN=()
+# A dir -> parent dirs dictionary
+declare -A DIR_PARENTS=()
+
+# Collect parent -> child and child->parent links
+for DIR_PARENT_DIR_LINK in */.parent; do
+    DIR="${DIR_PARENT_DIR_LINK%/.parent}"
+    PARENT_DIR_LINK=`readlink "$DIR_PARENT_DIR_LINK"`
+    if [[ $PARENT_DIR_LINK =~ $PARENT_DIR_LINK_RE ]]; then
+        PARENT_DIR="${PARENT_DIR_LINK#../}"
+        DIR_CHILDREN[$PARENT_DIR]+="${DIR_CHILDREN[$PARENT_DIR]:+ }$DIR"
+        DIR_PARENTS[$DIR]+="${DIR_PARENTS[$DIR]:+ }$PARENT_DIR"
+    else
+        echo "Invalid link $DIR_PARENT_DIR_LINK: $PARENT_DIR_LINK" >&2
+        echo "Expecting the link to match $PARENT_DIR_LINK_RE" >&2
+        exit 1
+    fi
+done
+
+# Propagate directory files into its children
+# Args: dir
+function propagate()
+{
+    local -r dir="$1"
+    local child_dir
+    local glob
+    local dir_file
+    local child_file
+
+    for child_dir in ${DIR_CHILDREN[$dir]:-}; do
+        for glob in "${!GLOB_FORMATS[@]}"; do
+            for dir_file in "$dir/"$glob; do
+                child_file="$child_dir${dir_file#$dir}"
+                if [ ! -e "$child_file" ]; then
+                    printf "${GLOB_FORMATS[$glob]}" "../$dir_file" \
+                                > "$child_file"
+                fi
+            done
+        done
+        propagate "$child_dir"
+    done
+}
+
+# For each directory with children and without parents
+for DIR in "${!DIR_CHILDREN[@]}"; do
+    if [ -z "${DIR_PARENTS[$DIR]:-}" ]; then
+        propagate "$DIR"
+    fi
+done
