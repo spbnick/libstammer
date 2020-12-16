@@ -1,4 +1,4 @@
-.include "../stm32/vectors.S.inc"
+.include "vectors.S.inc"
 handler nmi_handler
 handler hardfault_handler
 handler reserved_10_handler

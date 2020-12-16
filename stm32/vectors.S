@@ -1,1 +1,1 @@
-.include "../stm32/vectors.S.inc"
+.include "vectors.S.inc"

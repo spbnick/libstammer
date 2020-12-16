@@ -1,7 +1,5 @@
 TARGET_CFLAGS=-mcpu=cortex-m0plus -mthumb
 
-MODULES += \
-    ../stm32l052c8t6/init \
-    ../stm32l052c8t6/vectors
+MODULES += vectors init
 
-include ../stm32/main.mk
+include main.mk

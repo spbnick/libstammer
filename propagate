@@ -14,9 +14,21 @@ INCLUDE_FORMAT_H="\
 #include <%s>
 "
 
+# .mk (make) include file format string
+INCLUDE_FORMAT_MK="\
+include %s
+"
+
+# .S.inc (Assembly) include file format string
+INCLUDE_FORMAT_S_INC="\
+.include \"%s\"
+"
+
 # An include file glob -> format string dictionary
 declare -r -A GLOB_FORMATS=(
     ["*.h"]="$INCLUDE_FORMAT_H"
+    ["*.mk"]="$INCLUDE_FORMAT_MK"
+    ["*.S.inc"]="$INCLUDE_FORMAT_S_INC"
 )
 
 # A dir -> child dirs dictionary
