@@ -7,7 +7,7 @@ set -e -u -o pipefail -o noclobber
 shopt -s nullglob
 
 # Parent dir link regex
-PARENT_DIR_LINK_RE='^\.\./[a-z0-9_]+$'
+PARENT_DIR_LINK_RE='^\.\./\.\./[a-z0-9_]+$'
 
 # .h (C) include file format string
 INCLUDE_FORMAT_H="\
@@ -37,11 +37,11 @@ declare -A DIR_CHILDREN=()
 declare -A DIR_PARENTS=()
 
 # Collect parent -> child and child->parent links
-for DIR_PARENT_DIR_LINK in */.parent; do
-    DIR="${DIR_PARENT_DIR_LINK%/.parent}"
+for DIR_PARENT_DIR_LINK in */.parents/*; do
+    DIR="${DIR_PARENT_DIR_LINK%/.parents/*}"
     PARENT_DIR_LINK=`readlink "$DIR_PARENT_DIR_LINK"`
     if [[ $PARENT_DIR_LINK =~ $PARENT_DIR_LINK_RE ]]; then
-        PARENT_DIR="${PARENT_DIR_LINK#../}"
+        PARENT_DIR="${PARENT_DIR_LINK#../../}"
         DIR_CHILDREN[$PARENT_DIR]+="${DIR_CHILDREN[$PARENT_DIR]:+ }$DIR"
         DIR_PARENTS[$DIR]+="${DIR_PARENTS[$DIR]:+ }$PARENT_DIR"
     else
