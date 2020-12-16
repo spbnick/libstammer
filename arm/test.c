@@ -2,8 +2,8 @@
  * Library test
  */
 
-#include <../stm32/test.h>
-#include <../stm32/misc.h>
+#include <../arm/test.h>
+#include <../arm/misc.h>
 #include <string.h>
 
 /**

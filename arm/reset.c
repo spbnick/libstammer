@@ -2,8 +2,8 @@
  * Reset-time implicit initialization
  */
 
-#include <../stm32/reset.h>
-#include <../stm32/misc.h>
+#include <../arm/reset.h>
+#include <../arm/misc.h>
 #include <string.h>
 
 /** Initialized global data section storage start address (not aligned) */
