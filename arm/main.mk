@@ -1,3 +1,6 @@
+ifndef _ARM_MAIN_MK
+_ARM_MAIN_MK=1
+
 CCPFX=arm-none-eabi-
 
 COMMON_CFLAGS = $(TARGET_CFLAGS) -Wall -Wextra -Werror -O2 -g3 -I. $(CFLAGS)
@@ -30,3 +33,5 @@ clean:
 	rm -f $(OBJS)
 	rm -f $(DEPS)
 	rm -f libstammer.a
+
+endif # _ARM_MAIN_MK
