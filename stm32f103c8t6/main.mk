@@ -7,5 +7,6 @@ MODULES += \
     ../stm32f103c8t6/usart
 
 include ../stm32/main.mk
+include ../arm_cortex_m3/main.mk
 
 endif # _STM32F103C8T6_MAIN_MK

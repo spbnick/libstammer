@@ -5,28 +5,8 @@
 #ifndef _STM32F103C8T6_NVIC_H
 #define _STM32F103C8T6_NVIC_H
 
-#include <../stm32/misc.h>
-
-/** NVIC (Nested Vectored Interrupt Controller) */
-struct nvic {
-    unsigned int iser[8];           /**< Interrupt set-enable registers */
-    unsigned int hole1[24];
-    unsigned int icer[8];           /**< Interrupt clear-enable registers */
-    unsigned int hole2[24];
-    unsigned int ispr[8];           /**< Interrupt set-pending registers */
-    unsigned int hole3[24];
-    unsigned int icpr[8];           /**< Interrupt clear-pending registers */
-    unsigned int hole4[24];
-    unsigned int iabr[8];           /**< Interrupt active bit registers */
-    unsigned int hole5[56];
-    union {
-        unsigned int    ipr[60];    /**< Interrupt priority registers */
-        unsigned char   iprb[240];  /**< Interrupt priority register bytes */
-    };
-};
-
-/** The NVIC instance */
-#define NVIC ((volatile struct nvic *)0xe000e100)
+#include <../stm32f103c8t6/misc.h>
+#include <../arm_cortex_m3/nvic.h>
 
 /**
  * Interrupt numbers (positions).
@@ -97,54 +77,6 @@ enum nvic_int {
     /** Number of interrupts, not an actual interrupt */
     NVIC_INT_NUM
 };
-
-/**
- * Enable an interrupt.
- *
- * @param num   Number of the interrupt to enable.
- */
-static inline void
-nvic_int_set_enable(enum nvic_int num)
-{
-    assert(num < NVIC_INT_NUM);
-    NVIC->iser[num >> 5] |= 1 << (num & 0x1f);
-}
-
-/**
- * Disable an interrupt.
- *
- * @param num   Number of the interrupt to disable.
- */
-static inline void
-nvic_int_clear_enable(enum nvic_int num)
-{
-    assert(num < NVIC_INT_NUM);
-    NVIC->icer[num >> 5] |= 1 << (num & 0x1f);
-}
-
-/**
- * Set an interrupt "pending" status.
- *
- * @param num   Number of the interrupt to set the "pending" status for.
- */
-static inline void
-nvic_int_set_pending(enum nvic_int num)
-{
-    assert(num < NVIC_INT_NUM);
-    NVIC->ispr[num >> 5] |= 1 << (num & 0x1f);
-}
-
-/**
- * Clear an interrupt "pending" status.
- *
- * @param num   Number of the interrupt to clear the "pending" status for.
- */
-static inline void
-nvic_int_clear_pending(enum nvic_int num)
-{
-    assert(num < NVIC_INT_NUM);
-    NVIC->icpr[num >> 5] |= 1 << (num & 0x1f);
-}
 
 /**
  * Get interrupt number of an external interrupt line.
