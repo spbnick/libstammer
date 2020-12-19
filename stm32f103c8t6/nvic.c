@@ -7,7 +7,7 @@
 enum nvic_int
 nvic_int_from_ext(unsigned int ext_num)
 {
-    assert(ext_num < 16);
+    assert(ext_num < NVIC_INT_EXT_NUM);
     if (ext_num == 0) {
         return NVIC_INT_EXTI0;
     } else if (ext_num == 1) {

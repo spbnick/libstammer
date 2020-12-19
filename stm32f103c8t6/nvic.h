@@ -78,6 +78,9 @@ enum nvic_int {
     NVIC_INT_NUM
 };
 
+/** Number of external interrupts */
+#define NVIC_INT_EXT_NUM    16
+
 /**
  * Get interrupt number of an external interrupt line.
  *
@@ -92,12 +95,12 @@ extern enum nvic_int nvic_int_from_ext(unsigned int ext_num);
  * Enable an external interrupt.
  *
  * @param ext_num   Number of the external interrupt to enable,
- *                  must be less than 16.
+ *                  must be less than NVIC_INT_EXT_NUM.
  */
 static inline void
 nvic_int_set_enable_ext(unsigned int ext_num)
 {
-    assert(ext_num < 16);
+    assert(ext_num < NVIC_INT_EXT_NUM);
     nvic_int_set_enable(nvic_int_from_ext(ext_num));
 }
 
@@ -105,12 +108,12 @@ nvic_int_set_enable_ext(unsigned int ext_num)
  * Disable an external interrupt.
  *
  * @param ext_num   Number of the external interrupt to disable,
- *                  must be less than 16.
+ *                  must be less than NVIC_INT_EXT_NUM.
  */
 static inline void
 nvic_int_clear_enable_ext(unsigned int ext_num)
 {
-    assert(ext_num < 16);
+    assert(ext_num < NVIC_INT_EXT_NUM);
     nvic_int_clear_enable(nvic_int_from_ext(ext_num));
 }
 
@@ -123,7 +126,7 @@ nvic_int_clear_enable_ext(unsigned int ext_num)
 static inline void
 nvic_int_set_pending_ext(unsigned int ext_num)
 {
-    assert(ext_num < 16);
+    assert(ext_num < NVIC_INT_EXT_NUM);
     nvic_int_set_pending(nvic_int_from_ext(ext_num));
 }
 
@@ -136,7 +139,7 @@ nvic_int_set_pending_ext(unsigned int ext_num)
 static inline void
 nvic_int_clear_pending_ext(unsigned int ext_num)
 {
-    assert(ext_num < 16);
+    assert(ext_num < NVIC_INT_EXT_NUM);
     nvic_int_clear_pending(nvic_int_from_ext(ext_num));
 }
 
