@@ -15,8 +15,13 @@ struct gpio {
     unsigned int odr;       /**< GPIO port output data register */
     unsigned int bsrr;      /**< GPIO port bit set/reset register */
     unsigned int lckr;      /**< GPIO port configuration lock register */
-    unsigned int afrl;      /**< GPIO alternate function low register */
-    unsigned int afrh;      /**< GPIO alternate function high register */
+    union {
+        unsigned int afr[2];    /**< GPIO alternate function registers */
+        struct {
+            unsigned int afrl;  /**< GPIO alternate function low register */
+            unsigned int afrh;  /**< GPIO alternate function high register */
+        };
+    };
     unsigned int brr;       /**< GPIO port bit reset register */
 };
 
@@ -713,5 +718,119 @@ enum gpio_afsel {
 /* Port reset bit 15 */
 #define GPIO_BRR_BR15_LSB  15
 #define GPIO_BRR_BR15_MASK (1 << GPIO_BRR_BR15_LSB)
+
+/**
+ * Configure a GPIO pin as an output.
+ *
+ * @param gpio      The GPIO port peripheral the pin resides on.
+ * @param pin       Index of the pin to configure.
+ * @param otype     Output type.
+ * @param pupd      Pull-up/pull-down configuration.
+ * @param ospeed    Output speed.
+ */
+static inline void gpio_pin_conf_output(volatile struct gpio *gpio,
+                                        unsigned int pin,
+                                        enum gpio_otype otype,
+                                        enum gpio_pupd pupd,
+                                        enum gpio_ospeed ospeed)
+{
+    assert(pin < 16);
+    const size_t lsb2 = pin << 1;
+    gpio->moder = (gpio->moder & ~(3 << lsb2)) | (GPIO_MODE_OUTPUT << lsb2);
+    gpio->otyper = (gpio->otyper & ~(1 << pin)) | ((otype & 1) << pin);
+    gpio->pupdr = (gpio->pupdr & ~(3 << lsb2)) | ((pupd & 3) << lsb2);
+    gpio->ospeedr = (gpio->ospeedr & ~(3 << lsb2)) | ((ospeed & 3) << lsb2);
+}
+
+/**
+ * Configure a GPIO pin for an alternate function.
+ *
+ * @param gpio      The GPIO port peripheral the pin resides on.
+ * @param pin       Index of the pin to configure.
+ * @param afsel     Alternate function selection.
+ * @param otype     Output type.
+ * @param pupd      Pull-up/pull-down configuration.
+ * @param ospeed    Output speed.
+ */
+static inline void gpio_pin_conf_af(volatile struct gpio *gpio,
+                                    unsigned int pin,
+                                    enum gpio_afsel afsel,
+                                    enum gpio_otype otype,
+                                    enum gpio_pupd pupd,
+                                    enum gpio_ospeed ospeed)
+{
+    assert(pin < 16);
+    const size_t lsb2 = pin << 1;
+    const size_t reg4 = pin >> 3;
+    const size_t lsb4 = (pin << 2) & 31;
+    gpio->moder = (gpio->moder & ~(3 << lsb2)) | (GPIO_MODE_AF << lsb2);
+    gpio->otyper = (gpio->otyper & ~(1 << pin)) | ((otype & 1) << pin);
+    gpio->afr[reg4] = (gpio->afr[reg4] & ~(7 << lsb4)) |
+                      ((afsel & 7) << lsb4);
+    gpio->pupdr = (gpio->pupdr & ~(3 << lsb2)) | ((pupd & 3) << lsb2);
+    gpio->ospeedr = (gpio->ospeedr & ~(3 << lsb2)) | ((ospeed & 3) << lsb2);
+}
+
+/**
+ * Configure a GPIO pin as an input.
+ *
+ * @param gpio      The GPIO port peripheral the pin resides on.
+ * @param pin       Index of the pin to configure.
+ * @param pupd      Pull-up/pull-down configuration.
+ */
+static inline void gpio_pin_conf_input(volatile struct gpio *gpio,
+                                       unsigned int pin,
+                                       enum gpio_pupd pupd)
+{
+    assert(pin < 16);
+    const size_t lsb2 = pin << 1;
+    gpio->moder = (gpio->moder & ~(3 << lsb2)) | (GPIO_MODE_INPUT << lsb2);
+    gpio->pupdr = (gpio->pupdr & ~(3 << lsb2)) | ((pupd & 3) << lsb2);
+}
+
+/**
+ * Configure a GPIO pin as an analog pin.
+ *
+ * @param gpio      The GPIO port peripheral the pin resides on.
+ * @param pin       Index of the pin to configure.
+ */
+static inline void gpio_pin_conf_analog(volatile struct gpio *gpio,
+                                        unsigned int pin)
+{
+    assert(pin < 16);
+    const size_t lsb2 = pin << 1;
+    gpio->moder = (gpio->moder & ~(3 << lsb2)) | (GPIO_MODE_ANALOG << lsb2);
+}
+
+/**
+ * Set the state of a single pin on a port.
+ *
+ * @param gpio  The GPIO port peripheral the pin resides on.
+ * @param pin   Index of the pin to set the state of.
+ * @param state The pin state to set, 0 - unset, otherwise - set.
+ */
+static inline void
+gpio_pin_set(volatile struct gpio *gpio,
+             unsigned int pin,
+             unsigned int state)
+{
+    pin |= ((unsigned int)!state) << 4;
+    gpio->bsrr = (1 << pin);
+}
+
+/**
+ * Get the state of a single pin on a port.
+ *
+ * @param gpio  The GPIO port peripheral the pin resides on.
+ * @param pin   Index of the pin to get the state of.
+ *
+ * @return The state of the pin: 1 for set, 0 for unset.
+ */
+static inline unsigned int
+gpio_pin_get(volatile struct gpio *gpio,
+             unsigned int pin)
+{
+    return (gpio->idr >> pin) & 1;
+}
 
 #endif /* _STM32L052C8T6_GPIO_H */
