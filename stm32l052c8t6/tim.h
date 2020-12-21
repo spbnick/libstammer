@@ -31,17 +31,23 @@ struct tim {
     union {
         unsigned int or2;   /**< TIM2 option register */
         unsigned int or3;   /**< TIM3 option register */
+        unsigned int or21;  /**< TIM21 option register */
+        unsigned int or22;  /**< TIM22 option register */
     };
 };
 
-/** The TIM1 (advanced control timer) instance */
-#define TIM1 ((volatile struct tim *)0x40012c00)
 /** The TIM2 (general purpose timer) instance */
 #define TIM2 ((volatile struct tim *)0x40000000)
 /** The TIM3 (general purpose timer) instance */
 #define TIM3 ((volatile struct tim *)0x40000400)
-/** The TIM4 (general purpose timer) instance */
-#define TIM4 ((volatile struct tim *)0x40000800)
+/** The TIM6 (basic timer) instance */
+#define TIM6 ((volatile struct tim *)0x40001000)
+/** The TIM7 (basic timer) instance */
+#define TIM7 ((volatile struct tim *)0x40001400)
+/** The TIM21 (basic timer) instance */
+#define TIM21 ((volatile struct tim *)0x40010800)
+/** The TIM22 (basic timer) instance */
+#define TIM22 ((volatile struct tim *)0x40011400)
 
 /*
  * Control register 1 bits
