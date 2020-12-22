@@ -330,6 +330,6 @@ enum rcc_cfgr_sw_val {
 #define RCC_APB1ENR_TIM3EN_LSB  1
 #define RCC_APB1ENR_TIM3EN_MASK (1 << RCC_APB1ENR_TIM3EN_LSB)
 /* Timer 2 clock enable bit */
-#define RCC_APB1ENR_TIM2EN_LSB  1
+#define RCC_APB1ENR_TIM2EN_LSB  0
 #define RCC_APB1ENR_TIM2EN_MASK (1 << RCC_APB1ENR_TIM2EN_LSB)
 #endif /* _STM32L052C8T6_RCC_H */
