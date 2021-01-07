@@ -5,6 +5,9 @@
 #ifndef _STM32L052C8T6_GPIO_H
 #define _STM32L052C8T6_GPIO_H
 
+#include <misc.h>
+#include <stddef.h>
+
 /** GPIO */
 struct gpio {
     unsigned int moder;     /**< GPIO port mode register */
